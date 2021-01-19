@@ -1,5 +1,5 @@
 
-# FootballMoods
+# FootballData
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -11,7 +11,7 @@ The goal of FootballMoods is to ...
 You can install the released version of FootballMoods from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("FootballMoods")
+install.packages("FootballData")
 ```
 
 ## Example
@@ -19,7 +19,7 @@ install.packages("FootballMoods")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(FootballMoods)
+library(FootballData)
 ## basic example code
 ```
 
