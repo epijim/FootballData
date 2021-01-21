@@ -2,7 +2,9 @@
 #'
 #' Adding in as potentially may allow package to work over a few APIs
 #'
+#' @param competition_id The ID for the competition of interest.
 #' @param api Name of API. Currently has \code{"football-data.org"}
+#' @param api_token Your API token
 #'
 #' @return Base url for API
 #'
@@ -12,9 +14,9 @@
 #' @export
 
 football_get_standing <- function(
-  competition_id = 2021,
+  competition_id,
   api = "football-data.org",
-  api_token = Sys.getenv("MY_SECRET")
+  api_token = Sys.getenv("API_FOOTBALL_DATA")
 ){
   api_endpoint <- switch(
     api,

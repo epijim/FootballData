@@ -1,8 +1,11 @@
-#' Map name to base URL for API
+#' Get competition information
 #'
-#' Adding in as potentially may allow package to work over a few APIs
+#' Get either information on what competitions exist, or a particular
+#' competition.
 #'
 #' @param api Name of API. Currently has \code{"football-data.org"}
+#' @param api_token The API token.
+#' @param competition_id The id for that competition.
 #'
 #' @return Base url for API
 #'
@@ -11,9 +14,9 @@
 #'
 #' @export
 football_get_competition <- function(
+  competition_id = NULL,
   api = "football-data.org",
-  api_token = Sys.getenv("MY_SECRET"),
-  competition_id = NULL
+  api_token = Sys.getenv("API_FOOTBALL_DATA")
 ){
   # allow later api's to be added
   api_endpoint <- switch(

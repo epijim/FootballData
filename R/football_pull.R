@@ -14,8 +14,8 @@
 #' football_api_url("football-data.org")
 football_pull <- function(
   api = "football-data.org",
-  api_endpoint = "",
-  api_token = Sys.getenv("MY_SECRET")
+  api_endpoint = "/competitions/",
+  api_token = Sys.getenv("API_FOOTBALL_DATA")
 ){
   httr::GET(
     glue::glue("{football_api_url(api = api)}{api_endpoint}"),

@@ -1,19 +1,21 @@
-#' Map name to base URL for API
+#' Get upcoming matches
 #'
-#' Adding in as potentially may allow package to work over a few APIs
+#' Hits the matches API fixed on \code{status=SCHEDULED}.
 #'
-#' @param api Name of API. Currently has \code{"football-data.org"}
+#' @param team_id What is the team id
+#' @param api Which API to use.
+#' @param api_token Your API token.
 #'
 #' @return Base url for API
 #'
 #' @examples
-#' football_api_url("football-data.org")
+#' football_api_url()
 #'
 #' @export
 football_get_upcoming <- function(
   team_id = 86,
   api = "football-data.org",
-  api_token = Sys.getenv("MY_SECRET")
+  api_token = Sys.getenv("API_FOOTBALL_DATA")
 ){
   # allow later api's to be added
   api_endpoint <- switch(
