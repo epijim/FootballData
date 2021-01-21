@@ -18,3 +18,5 @@ Imports:
     magrittr
 Suggests: 
     covr
+Depends: 
+    R (>= 2.10)
