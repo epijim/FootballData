@@ -5,7 +5,7 @@
 #'
 #' @param api Name of API. Currently has \code{"football-data.org"}
 #' @param api_token The API token.
-#' @param competition_id The id for that competition.
+#' @param competition_id The id for that competition. Optional
 #'
 #' @return Base url for API
 #'
@@ -36,7 +36,12 @@ football_get_competition <- function(
     api_token = api_token)
 
   # clean football-data.org
-  data_clean <- data$competitions
+  if (is.null(competition_id)){
+    data_clean <- data$competitions
+  } else {
+    data_clean <- data
+  }
+
 
   data_clean
 }
