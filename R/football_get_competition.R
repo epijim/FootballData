@@ -38,6 +38,27 @@ football_get_competition <- function(
   # clean football-data.org
   if (is.null(competition_id)){
     data_clean <- data$competitions
+
+    data_clean <- data_clean %>%
+      mutate(
+        country = area,
+        league = name,
+        competition_id = id
+      )
+
+    data_clean <- bind_cols(
+      data_clean %>%
+        select(league,competition_id,plan),
+      data_clean$area %>%
+        select(country = name, url_flag = ensignUrl)
+    ) %>%
+      mutate(
+        flag = case_when(
+          !is.na(url_flag) ~ glue("<img src='{url_flag}' height='24'></img>"),
+          TRUE ~ NA_character_
+        )
+      )
+
   } else {
     data_clean <- data
   }
