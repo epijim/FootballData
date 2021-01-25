@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • FootballData</title>
+<title>Take API data and calculate some metrics for fun — football_calculate_competition_metrics • FootballData</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Take API data and calculate some metrics for fun — football_calculate_competition_metrics" />
+<meta property="og:description" content="Turn data into some fun 'how would a supporter be feeling' metrics." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -103,78 +104,33 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Take API data and calculate some metrics for fun</h1>
+    
+    <div class="hidden name"><code>football_calculate_competition_metrics.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Turn data into some fun 'how would a supporter be feeling' metrics.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>football_calculate_competition_metrics</span><span class='op'>(</span><span class='va'>competition_standings</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="football_api_url.html">football_api_url()</a></code> </p>
-        </td>
-        <td><p>Map name to base URL for API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="football_calculate_competition_metrics.html">football_calculate_competition_metrics()</a></code> </p>
-        </td>
-        <td><p>Take API data and calculate some metrics for fun</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="football_get_competition.html">football_get_competition()</a></code> </p>
-        </td>
-        <td><p>Get competition information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="football_get_standing.html">football_get_standing()</a></code> </p>
-        </td>
-        <td><p>Map name to base URL for API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="football_get_teams.html">football_get_teams()</a></code> </p>
-        </td>
-        <td><p>Get competition information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="football_get_upcoming.html">football_get_upcoming()</a></code> </p>
-        </td>
-        <td><p>Get upcoming matches</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="football_pull.html">football_pull()</a></code> </p>
-        </td>
-        <td><p>Internal function that does the pull</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>competition_standings</th>
+      <td><p>Data frame from <code>football_get_standing</code></p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>For a particular competition - metrics on all teams.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
