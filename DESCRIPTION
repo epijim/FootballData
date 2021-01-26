@@ -1,13 +1,12 @@
 Package: FootballData
 Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Version: 0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "James",
+           family = "Black",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "james@epijim.uk")
+Description: Pull football data via API and run some metrics.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
