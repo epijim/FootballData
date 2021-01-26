@@ -1,0 +1,12 @@
+name: football_moods
+title: football_moods
+username:
+account: epijim
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3521251
+bundleId: 4142364
+url: https://epijim.shinyapps.io/football_moods/
+when: 1611612885.62552
+asMultiple: FALSE
+asStatic: FALSE
