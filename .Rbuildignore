@@ -8,3 +8,4 @@
 ^\.github$
 ^data-raw$
 ^shinyapp$
+^Makefile$
