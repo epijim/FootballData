@@ -62,7 +62,1225 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-Pull football data via API and run some metrics.
+<div id="footballdata" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#footballdata" class="anchor"></a>FootballData</h1></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/tidyverse/glue">glue</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://haozhu233.github.io/kableExtra">kableExtra</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">FootballData</span>)
+
+<span class="kw">select_country</span> <span class="op">&lt;-</span> <span class="st">"England"</span>
+<span class="kw">select_league</span> <span class="op">&lt;-</span> <span class="st">"Championship"</span>
+<span class="kw">select_team_interest</span> <span class="op">&lt;-</span> <span class="st">"Nottingham Forest FC"</span>
+</pre></div>
+<div id="competitions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#competitions" class="anchor"></a>Competitions</h2>
+<p>Get all competitions.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">competitions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/football_get_competition.html">football_get_competition</a></span>()
+
+<span class="fu">glimpse</span>(<span class="kw">competitions</span>)
+</pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## Rows: 150</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">## Columns: 6</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">## $ league         &lt;chr&gt; "WC Qualification", "Primera B Nacional", "Superliga A…</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">## $ competition_id &lt;int&gt; 2006, 2023, 2024, 2025, 2149, 2147, 2008, 2026, 2020, …</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">## $ plan           &lt;chr&gt; "TIER_FOUR", "TIER_FOUR", "TIER_TWO", "TIER_FOUR", "TI…</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">## $ country        &lt;chr&gt; "Africa", "Argentina", "Argentina", "Argentina", "Arge…</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">## $ url_flag       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, "https://upload.wikime…</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">## $ flag           &lt;glue&gt; NA, NA, NA, NA, NA, NA, NA, NA, "&lt;img src='https://up…</span></span></code></pre></div>
+<p>Filter to the ones on the free plan.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">competitions_curated</span> <span class="op">&lt;-</span> <span class="kw">competitions</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(
+    <span class="kw">plan</span> <span class="op">==</span> <span class="st">"TIER_ONE"</span> 
+  )
+</pre></div>
+<p>Show them.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">competitions_curated</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span>(<span class="kw">country</span>,<span class="kw">league</span>,<span class="kw">flag</span>) <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>) 
+</pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+<p>country</p>
+</th>
+<th style="text-align:left;">
+<p>league</p>
+</th>
+<th style="text-align:left;">
+<p>flag</p>
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<p>Brazil</p>
+</td>
+<td style="text-align:left;">
+<p>Série A</p>
+</td>
+<td style="text-align:left;">
+<p>NA</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>England</p>
+</td>
+<td style="text-align:left;">
+<p>Championship</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>England</p>
+</td>
+<td style="text-align:left;">
+<p>Premier League</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Europe</p>
+</td>
+<td style="text-align:left;">
+<p>UEFA Champions League</p>
+</td>
+<td style="text-align:left;">
+<p>NA</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Europe</p>
+</td>
+<td style="text-align:left;">
+<p>European Championship</p>
+</td>
+<td style="text-align:left;">
+<p>NA</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>France</p>
+</td>
+<td style="text-align:left;">
+<p>Ligue 1</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Germany</p>
+</td>
+<td style="text-align:left;">
+<p>Bundesliga</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Italy</p>
+</td>
+<td style="text-align:left;">
+<p>Serie A</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Netherlands</p>
+</td>
+<td style="text-align:left;">
+<p>Eredivisie</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Portugal</p>
+</td>
+<td style="text-align:left;">
+<p>Primeira Liga</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Spain</p>
+</td>
+<td style="text-align:left;">
+<p>Primera Division</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>World</p>
+</td>
+<td style="text-align:left;">
+<p>FIFA World Cup</p>
+</td>
+<td style="text-align:left;">
+<p>NA</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="league-info" class="section level2">
+<h2 class="hasAnchor">
+<a href="#league-info" class="anchor"></a>League info</h2>
+<p>Look at England - Championship.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">league</span> <span class="op">&lt;-</span> <span class="kw">competitions_curated</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">country</span> <span class="op">==</span> <span class="kw">select_country</span> <span class="op">&amp;</span> <span class="kw">league</span> <span class="op">==</span> <span class="kw">select_league</span>) <span class="op">%&gt;%</span>
+  <span class="fu">pull</span>(<span class="kw">competition_id</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>() <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/football_get_teams.html">football_get_teams</a></span>()
+
+<span class="kw">league</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span>(<span class="kw">team</span>,<span class="kw">crest</span>) <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
+</pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+<p>team</p>
+</th>
+<th style="text-align:left;">
+<p>crest</p>
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<p>Blackburn Rovers FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/59.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Norwich City FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Norwich_City.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Queens Park Rangers FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/d/d4/Queens_Park_Rangers.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Stoke City FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/a/a3/Stoke_City.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Swansea City AFC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/a/ab/Swansea_City_Logo.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Birmingham City FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/332.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Derby County FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/342.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Middlesbrough FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/343.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Sheffield Wednesday FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/345.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Watford FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/346.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Nottingham Forest FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/351.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Reading FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/355.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Barnsley FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/357.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Millwall FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/384.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Rotherham United FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/385.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Bristol City FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/387.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Luton Town FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/389.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Huddersfield Town AFC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/394.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Brentford FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/402.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Cardiff City FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/715.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>AFC Bournemouth</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1044.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Coventry City FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1076.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Preston North End FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1081.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>Wycombe Wanderers FC</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1146.svg" height="24"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="standings" class="section level2">
+<h2 class="hasAnchor">
+<a href="#standings" class="anchor"></a>Standings</h2>
+<p>What’s the current league standings.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">standings</span> <span class="op">&lt;-</span> <span class="kw">competitions_curated</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">country</span> <span class="op">==</span> <span class="kw">select_country</span> <span class="op">&amp;</span> <span class="kw">league</span> <span class="op">==</span> <span class="kw">select_league</span>) <span class="op">%&gt;%</span>
+  <span class="fu">pull</span>(<span class="kw">competition_id</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>() <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/football_get_standing.html">football_get_standing</a></span>()
+
+<span class="fu">glimpse</span>(<span class="kw">standings</span>)
+</pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## Rows: 24</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">## Columns: 14</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">## $ position       &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">## $ playedGames    &lt;int&gt; 25, 26, 24, 23, 25, 25, 25, 25, 26, 25, 26, 25, 25, 26…</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">## $ form           &lt;chr&gt; "W,W,W,D,L", "D,W,W,W,L", "W,W,D,W,W", "W,W,W,W,D", "D…</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">## $ won            &lt;int&gt; 16, 13, 13, 12, 13, 11, 11, 12, 9, 10, 11, 10, 9, 9, 6…</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">## $ draw           &lt;int&gt; 5, 8, 7, 8, 5, 9, 6, 3, 10, 6, 3, 4, 6, 4, 12, 5, 9, 8…</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">## $ lost           &lt;int&gt; 4, 5, 4, 3, 7, 5, 8, 10, 7, 9, 12, 11, 10, 13, 7, 11, …</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">## $ points         &lt;int&gt; 53, 47, 46, 44, 44, 42, 39, 39, 37, 36, 36, 34, 33, 31…</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">## $ goalsFor       &lt;int&gt; 35, 30, 29, 37, 37, 38, 30, 27, 31, 40, 31, 27, 21, 29…</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">## $ goalsAgainst   &lt;int&gt; 21, 18, 13, 21, 28, 21, 21, 27, 28, 28, 33, 32, 27, 37…</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">## $ goalDifference &lt;int&gt; 14, 12, 16, 16, 9, 17, 9, 0, 3, 12, -2, -5, -6, -8, -3…</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## $ team_id        &lt;int&gt; 68, 346, 72, 402, 355, 1044, 343, 387, 70, 59, 1081, 3…</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## $ team           &lt;chr&gt; "Norwich City FC", "Watford FC", "Swansea City AFC", "…</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="co">## $ url_team       &lt;chr&gt; "https://upload.wikimedia.org/wikipedia/en/8/8c/Norwic…</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="co">## $ crest          &lt;glue&gt; "&lt;img src='https://upload.wikimedia.org/wikipedia/en/…</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="kw">standings</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span>(<span class="kw">position</span>,<span class="kw">points</span>,<span class="kw">team</span>,<span class="kw">form</span>,<span class="kw">crest</span>) <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
+</pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:right;">
+<p>position</p>
+</th>
+<th style="text-align:right;">
+<p>points</p>
+</th>
+<th style="text-align:left;">
+<p>team</p>
+</th>
+<th style="text-align:left;">
+<p>form</p>
+</th>
+<th style="text-align:left;">
+<p>crest</p>
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+<p>1</p>
+</td>
+<td style="text-align:right;">
+<p>53</p>
+</td>
+<td style="text-align:left;">
+<p>Norwich City FC</p>
+</td>
+<td style="text-align:left;">
+<p>W,W,W,D,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Norwich_City.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>2</p>
+</td>
+<td style="text-align:right;">
+<p>47</p>
+</td>
+<td style="text-align:left;">
+<p>Watford FC</p>
+</td>
+<td style="text-align:left;">
+<p>D,W,W,W,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/346.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>3</p>
+</td>
+<td style="text-align:right;">
+<p>46</p>
+</td>
+<td style="text-align:left;">
+<p>Swansea City AFC</p>
+</td>
+<td style="text-align:left;">
+<p>W,W,D,W,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/a/ab/Swansea_City_Logo.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>4</p>
+</td>
+<td style="text-align:right;">
+<p>44</p>
+</td>
+<td style="text-align:left;">
+<p>Brentford FC</p>
+</td>
+<td style="text-align:left;">
+<p>W,W,W,W,D</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/402.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>5</p>
+</td>
+<td style="text-align:right;">
+<p>44</p>
+</td>
+<td style="text-align:left;">
+<p>Reading FC</p>
+</td>
+<td style="text-align:left;">
+<p>D,W,W,D,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/355.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>6</p>
+</td>
+<td style="text-align:right;">
+<p>42</p>
+</td>
+<td style="text-align:left;">
+<p>AFC Bournemouth</p>
+</td>
+<td style="text-align:left;">
+<p>L,L,D,W,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1044.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>7</p>
+</td>
+<td style="text-align:right;">
+<p>39</p>
+</td>
+<td style="text-align:left;">
+<p>Middlesbrough FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,L,W,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/343.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>8</p>
+</td>
+<td style="text-align:right;">
+<p>39</p>
+</td>
+<td style="text-align:left;">
+<p>Bristol City FC</p>
+</td>
+<td style="text-align:left;">
+<p>W,L,W,L,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/387.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>9</p>
+</td>
+<td style="text-align:right;">
+<p>37</p>
+</td>
+<td style="text-align:left;">
+<p>Stoke City FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,D,D,L,D</p>
+</td>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/a/a3/Stoke_City.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>10</p>
+</td>
+<td style="text-align:right;">
+<p>36</p>
+</td>
+<td style="text-align:left;">
+<p>Blackburn Rovers FC</p>
+</td>
+<td style="text-align:left;">
+<p>W,D,W,L,D</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/59.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>11</p>
+</td>
+<td style="text-align:right;">
+<p>36</p>
+</td>
+<td style="text-align:left;">
+<p>Preston North End FC</p>
+</td>
+<td style="text-align:left;">
+<p>D,W,L,L,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1081.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>12</p>
+</td>
+<td style="text-align:right;">
+<p>34</p>
+</td>
+<td style="text-align:left;">
+<p>Barnsley FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,L,L,W,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/357.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>13</p>
+</td>
+<td style="text-align:right;">
+<p>33</p>
+</td>
+<td style="text-align:left;">
+<p>Luton Town FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,L,W,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/389.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>14</p>
+</td>
+<td style="text-align:right;">
+<p>31</p>
+</td>
+<td style="text-align:left;">
+<p>Huddersfield Town AFC</p>
+</td>
+<td style="text-align:left;">
+<p>L,L,L,L,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/394.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>15</p>
+</td>
+<td style="text-align:right;">
+<p>30</p>
+</td>
+<td style="text-align:left;">
+<p>Millwall FC</p>
+</td>
+<td style="text-align:left;">
+<p>D,W,L,D,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/384.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>16</p>
+</td>
+<td style="text-align:right;">
+<p>29</p>
+</td>
+<td style="text-align:left;">
+<p>Cardiff City FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,L,L,L,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/715.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>17</p>
+</td>
+<td style="text-align:right;">
+<p>27</p>
+</td>
+<td style="text-align:left;">
+<p>Queens Park Rangers FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,W,D,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/d/d4/Queens_Park_Rangers.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>18</p>
+</td>
+<td style="text-align:right;">
+<p>26</p>
+</td>
+<td style="text-align:left;">
+<p>Coventry City FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,L,D,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1076.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>19</p>
+</td>
+<td style="text-align:right;">
+<p>26</p>
+</td>
+<td style="text-align:left;">
+<p>Birmingham City FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,L,L,D</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/332.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>20</p>
+</td>
+<td style="text-align:right;">
+<p>25</p>
+</td>
+<td style="text-align:left;">
+<p>Nottingham Forest FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,W,D,D</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/351.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>21</p>
+</td>
+<td style="text-align:right;">
+<p>25</p>
+</td>
+<td style="text-align:left;">
+<p>Derby County FC</p>
+</td>
+<td style="text-align:left;">
+<p>W,W,L,L,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/342.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>22</p>
+</td>
+<td style="text-align:right;">
+<p>20</p>
+</td>
+<td style="text-align:left;">
+<p>Rotherham United FC</p>
+</td>
+<td style="text-align:left;">
+<p>D,W,L,L,W</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/385.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>23</p>
+</td>
+<td style="text-align:right;">
+<p>15</p>
+</td>
+<td style="text-align:left;">
+<p>Wycombe Wanderers FC</p>
+</td>
+<td style="text-align:left;">
+<p>L,W,L,D,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1146.svg" height="24"></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<p>24</p>
+</td>
+<td style="text-align:right;">
+<p>13</p>
+</td>
+<td style="text-align:left;">
+<p>Sheffield Wednesday FC</p>
+</td>
+<td style="text-align:left;">
+<p>W,W,D,W,L</p>
+</td>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/345.svg" height="24"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="scheduled-games" class="section level2">
+<h2 class="hasAnchor">
+<a href="#scheduled-games" class="anchor"></a>Scheduled games</h2>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="kw">upcoming_foe_data</span> <span class="op">&lt;-</span> <span class="kw">standings</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(
+      <span class="kw">team</span> <span class="op">==</span> <span class="kw">select_team_interest</span>
+    ) <span class="op">%&gt;%</span>
+  <span class="fu">pull</span>(<span class="kw">team_id</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>() <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/football_get_upcoming.html">football_get_upcoming</a></span>() <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span>(<span class="kw">utcDate</span>) 
+
+<span class="fu">glimpse</span>(<span class="kw">upcoming_foe_data</span>)
+</pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## Rows: 21</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">## Columns: 14</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">## $ id          &lt;int&gt; 306684, 306676, 306704, 306708, 306723, 306732, 306745, 3…</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">## $ competition &lt;df[,3]&gt; &lt;data.frame[21 x 3]&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co">## $ season      &lt;df[,5]&gt; &lt;data.frame[21 x 5]&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">## $ utcDate     &lt;chr&gt; "2021-01-30T15:00:00Z", "2021-02-02T19:00:00Z", "2021-02-…</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">## $ status      &lt;chr&gt; "SCHEDULED", "SCHEDULED", "SCHEDULED", "SCHEDULED", "SCHE…</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">## $ matchday    &lt;int&gt; 27, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 4…</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">## $ stage       &lt;chr&gt; "REGULAR_SEASON", "REGULAR_SEASON", "REGULAR_SEASON", "RE…</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co">## $ group       &lt;chr&gt; "Regular Season", "Regular Season", "Regular Season", "Re…</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="co">## $ lastUpdated &lt;chr&gt; "2020-08-30T09:34:12Z", "2021-01-18T19:33:54Z", "2020-08-…</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="co">## $ odds        &lt;df[,1]&gt; &lt;data.frame[21 x 1]&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="co">## $ score       &lt;df[,6]&gt; &lt;data.frame[21 x 6]&gt;</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="co">## $ homeTeam    &lt;df[,2]&gt; &lt;data.frame[21 x 2]&gt;</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="co">## $ awayTeam    &lt;df[,2]&gt; &lt;data.frame[21 x 2]&gt;</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="co">## $ referees    &lt;list&gt; [[], [], [], [], [], [], [], [], [], [], [], [], [], [],…</span></span></code></pre></div>
+</div>
+<div id="metrics---league" class="section level2">
+<h2 class="hasAnchor">
+<a href="#metrics---league" class="anchor"></a>Metrics - League</h2>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/football_calculate_competition_metrics.html">football_calculate_competition_metrics</a></span>(<span class="kw">standings</span>)
+
+<span class="co"># table</span>
+<span class="kw">metrics</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span>(Team = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">crest</span>,<span class="kw">team</span>)) <span class="op">%&gt;%</span>
+  <span class="fu">select</span>(<span class="kw">Team</span>, Mood = <span class="kw">metric_mood</span>)  <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span>(
+    Mood = <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="kw">Mood</span>),
+    Mood = <span class="fu">case_when</span>(
+      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Jubilant"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
+        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#98FB98"</span>
+      ),
+      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Optimistic"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
+        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#e5f5f9"</span>
+      ),
+      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Ambivalent"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
+        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#f7fcb9"</span>
+      ),
+      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Doldrums"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
+        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#ffc4c4"</span>
+      ),
+      <span class="fl">TRUE</span> <span class="op">~</span> <span class="kw">Mood</span>
+    )
+  ) <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
+</pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+<p>Team</p>
+</th>
+<th style="text-align:left;">
+<p>Mood</p>
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Norwich_City.svg" height="24"> Norwich City FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant: Norwich City FC are on a roll</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/346.svg" height="24"> Watford FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant: Watford FC are on a roll</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/a/ab/Swansea_City_Logo.svg" height="24"> Swansea City AFC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant: Swansea City AFC are on a roll</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/402.svg" height="24"> Brentford FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant: Brentford FC are on a roll</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/355.svg" height="24"> Reading FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Reading FC are doing well</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1044.svg" height="24"> AFC Bournemouth</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: AFC Bournemouth are doing well</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/343.svg" height="24"> Middlesbrough FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Middlesbrough FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/387.svg" height="24"> Bristol City FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Bristol City FC are doing well</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/a/a3/Stoke_City.svg" height="24"> Stoke City FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Stoke City FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/59.svg" height="24"> Blackburn Rovers FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Blackburn Rovers FC are doing well</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1081.svg" height="24"> Preston North End FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Preston North End FC are doing well</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/357.svg" height="24"> Barnsley FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Barnsley FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/389.svg" height="24"> Luton Town FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Luton Town FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/394.svg" height="24"> Huddersfield Town AFC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Huddersfield Town AFC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/384.svg" height="24"> Millwall FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Millwall FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/715.svg" height="24"> Cardiff City FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Cardiff City FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="http://upload.wikimedia.org/wikipedia/de/d/d4/Queens_Park_Rangers.svg" height="24"> Queens Park Rangers FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Queens Park Rangers FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1076.svg" height="24"> Coventry City FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums: Coventry City FC are doing poor. Now’s a good time to bad mouth the manager.</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/332.svg" height="24"> Birmingham City FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums: Birmingham City FC are doing poor. Now’s a good time to bad mouth the manager.</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/351.svg" height="24"> Nottingham Forest FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Nottingham Forest FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/342.svg" height="24"> Derby County FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Derby County FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/385.svg" height="24"> Rotherham United FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Rotherham United FC aren’t doing well, but hey - at least they aren’t Sheffield Wednesday FC</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/1146.svg" height="24"> Wycombe Wanderers FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums: Wycombe Wanderers FC are doing poor. Now’s a good time to bad mouth the manager.</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><img src="https://crests.football-data.org/345.svg" height="24"> Sheffield Wednesday FC</p>
+</td>
+<td style="text-align:left;">
+<p><span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums: Sheffield Wednesday FC are doing poorly. Avoid supporters at all costs.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="metrics---team" class="section level2">
+<h2 class="hasAnchor">
+<a href="#metrics---team" class="anchor"></a>Metrics - Team</h2>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="kw">metrics_team</span> <span class="op">&lt;-</span> <span class="kw">metrics</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">team</span> <span class="op">==</span> <span class="kw">select_team_interest</span>)
+
+<span class="kw">metrics_team_summary</span> <span class="op">&lt;-</span> <span class="kw">metrics_team</span> <span class="op">%&gt;%</span> <span class="fu">select</span>(<span class="kw">team</span>,<span class="kw">crest</span>,<span class="kw">metric_mood</span>)
+
+<span class="kw">metrics_team</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span>(<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">metric_mood_numeric</span>,<span class="kw">metric_mood</span>)) <span class="op">%&gt;%</span>
+  <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">"metric"</span>),
+               names_to = <span class="st">"Variable"</span>,
+               values_to = <span class="st">"Modifier"</span>
+               ) <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span>(
+    Effect = <span class="fu">case_when</span>(
+      <span class="fu">str_detect</span>(<span class="kw">Modifier</span>, <span class="st">"\\+"</span>) <span class="op">~</span> <span class="st">"Positive"</span>,
+      <span class="fu">str_detect</span>(<span class="kw">Modifier</span>, <span class="st">"\\-"</span>) <span class="op">~</span> <span class="st">"Negative"</span>,
+      <span class="fl">TRUE</span> <span class="op">~</span> <span class="st">"Neutral"</span>
+    )
+  ) <span class="op">%&gt;%</span>
+  <span class="fu">select</span>(
+    <span class="kw">Effect</span>,<span class="kw">Modifier</span>
+  ) <span class="op">%&gt;%</span> <span class="fu">arrange</span>(<span class="kw">Effect</span>) <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span>(
+    Effect = <span class="fu">case_when</span>(
+      <span class="kw">Effect</span> <span class="op">==</span> <span class="st">"Negative"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
+        <span class="kw">Effect</span>, color = <span class="st">"white"</span>, bold = <span class="fl">TRUE</span>, background = <span class="st">"#F66E5CFF"</span>
+        ),
+      <span class="kw">Effect</span> <span class="op">==</span> <span class="st">"Positive"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
+        <span class="kw">Effect</span>, color = <span class="st">"white"</span>, bold = <span class="fl">TRUE</span>, background = <span class="st">"#228B22"</span>
+      ),
+      <span class="fl">TRUE</span> <span class="op">~</span> <span class="kw">Effect</span>
+    )
+  ) <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
+</pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+<p>Effect</p>
+</th>
+<th style="text-align:left;">
+<p>Modifier</p>
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<p><span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(246, 110, 92, 1) !important;">Negative</span></p>
+</td>
+<td style="text-align:left;">
+<p>– poor season</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p><span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(246, 110, 92, 1) !important;">Negative</span></p>
+</td>
+<td style="text-align:left;">
+<ul><li>conceded more than scored
+</li></ul>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Neutral
+</td>
+<td style="text-align:left;">
+drew last game
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
