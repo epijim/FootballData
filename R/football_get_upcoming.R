@@ -9,7 +9,7 @@
 #' @return Base url for API
 #'
 #' @examples
-#' football_api_url()
+#' football_get_upcoming()
 #'
 #' @export
 football_get_upcoming <- function(

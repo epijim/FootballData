@@ -1,0 +1,169 @@
+---
+title: "FootballData"
+output: github_document
+---
+
+To rebuild run `make build`.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE,message=FALSE}
+library(glue)
+library(kableExtra)
+library(tidyverse)
+library(FootballData)
+
+select_country <- "England"
+select_league <- "Championship"
+select_team_interest <- "Nottingham Forest FC"
+```
+
+##  Competitions
+
+Get all competitions.
+
+```{r}
+competitions <- football_get_competition()
+
+glimpse(competitions)
+```
+
+Filter to the ones on the free plan.
+
+```{r}
+competitions_curated <- competitions %>%
+  filter(
+    plan == "TIER_ONE" 
+  )
+```
+
+Show them.
+
+```{r}
+competitions_curated %>%
+  select(country,league,flag) %>%
+  knitr::kable(escape = F) 
+```
+
+## League info
+
+Look at `r select_country` - `r select_league`.
+
+```{r}
+league <- competitions_curated %>%
+  filter(country == select_country & league == select_league) %>%
+  pull(competition_id) %>%
+  as.character() %>%
+  football_get_teams()
+
+league %>%
+  select(team,crest) %>%
+  knitr::kable(escape = F)
+```
+
+## Standings
+
+What's the current league standings.
+
+```{r}
+standings <- competitions_curated %>%
+  filter(country == select_country & league == select_league) %>%
+  pull(competition_id) %>%
+  as.character() %>%
+  football_get_standing()
+
+glimpse(standings)
+
+standings %>%
+  select(position,points,team,form,crest) %>%
+  knitr::kable(escape = F)
+```
+
+## Scheduled games
+
+```{r}
+upcoming_foe_data <- standings %>%
+  filter(
+      team == select_team_interest
+    ) %>%
+  pull(team_id) %>%
+  as.character() %>%
+  football_get_upcoming() %>%
+  arrange(utcDate) 
+
+glimpse(upcoming_foe_data)
+```
+
+## Metrics - League
+
+```{r}
+
+metrics <- football_calculate_competition_metrics(standings)
+
+# table
+metrics %>%
+  mutate(Team = paste(crest,team)) %>%
+  select(Team, Mood = metric_mood)  %>%
+  mutate(
+    Mood = as.character(Mood),
+    Mood = case_when(
+      str_detect(Mood,"Jubilant") ~ cell_spec(
+        Mood, color = "black", background = "#98FB98"
+      ),
+      str_detect(Mood,"Optimistic") ~ cell_spec(
+        Mood, color = "black", background = "#e5f5f9"
+      ),
+      str_detect(Mood,"Ambivalent") ~ cell_spec(
+        Mood, color = "black", background = "#f7fcb9"
+      ),
+      str_detect(Mood,"Doldrums") ~ cell_spec(
+        Mood, color = "black", background = "#ffc4c4"
+      ),
+      TRUE ~ Mood
+    )
+  ) %>%
+  knitr::kable(escape = F)
+```
+
+## Metrics - Team
+
+```{r}
+metrics_team <- metrics %>%
+  filter(team == select_team_interest)
+
+metrics_team_summary <- metrics_team %>% select(team,crest,metric_mood)
+
+metrics_team %>%
+  select(-c(metric_mood_numeric,metric_mood)) %>%
+  pivot_longer(starts_with("metric"),
+               names_to = "Variable",
+               values_to = "Modifier"
+               ) %>%
+  mutate(
+    Effect = case_when(
+      str_detect(Modifier, "\\+") ~ "Positive",
+      str_detect(Modifier, "\\-") ~ "Negative",
+      TRUE ~ "Neutral"
+    )
+  ) %>%
+  select(
+    Effect,Modifier
+  ) %>% arrange(Effect) %>%
+  mutate(
+    Effect = case_when(
+      Effect == "Negative" ~ cell_spec(
+        Effect, color = "white", bold = TRUE, background = "#F66E5CFF"
+        ),
+      Effect == "Positive" ~ cell_spec(
+        Effect, color = "white", bold = TRUE, background = "#228B22"
+      ),
+      TRUE ~ Effect
+    )
+  ) %>%
+  knitr::kable(escape = F)
+```
+
+

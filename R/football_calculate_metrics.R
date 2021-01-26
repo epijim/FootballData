@@ -26,15 +26,15 @@ football_calculate_competition_metrics <- function(
         position / max(position) < 1.1 ~ "-- poor season",
       ),
       metric_recent_wins = dplyr::case_when(
-        str_count(form,"W") == 5 ~ "++++ 5 win streak",
-        str_count(form,"L") == 5 ~ "---- 5 loss streak",
-        str_count(form,"W") >= 3 ~ "++ recent wins",
-        str_count(form,"L") < 1 ~ "+ only one recent loss",
-        str_count(form,"W") == 0 ~ "-- no recent wins",
-        str_sub(form,-1) == "W" ~ "+ won last game",
-        str_count(form,"L") >= 3 ~ "-- more recent losses than wins",
-        str_sub(form,-1) == "L" ~ "- lost last game",
-        str_sub(form,-1) == "D" ~ "drew last game",
+        stringr::str_count(form,"W") == 5 ~ "++++ 5 win streak",
+        stringr::str_count(form,"L") == 5 ~ "---- 5 loss streak",
+        stringr::str_count(form,"W") >= 3 ~ "++ recent wins",
+        stringr::str_count(form,"L") < 1 ~ "+ only one recent loss",
+        stringr::str_count(form,"W") == 0 ~ "-- no recent wins",
+        stringr::str_sub(form,-1) == "W" ~ "+ won last game",
+        stringr::str_count(form,"L") >= 3 ~ "-- more recent losses than wins",
+        stringr::str_sub(form,-1) == "L" ~ "- lost last game",
+        stringr::str_sub(form,-1) == "D" ~ "drew last game",
         TRUE ~ "recent performance uncategorised"
       ),
       working = sd(goalDifference),
@@ -53,8 +53,8 @@ football_calculate_competition_metrics <- function(
         collapse = "")
       ) %>%
     dplyr::mutate(
-      plus = dplyr::str_count(concat,"\\+"),
-      neg = dplyr::str_count(concat,"\\-"),
+      plus = stringr::str_count(concat,"\\+"),
+      neg = stringr::str_count(concat,"\\-"),
       metric_mood_numeric = plus - neg,
       metric_mood = dplyr::case_when(
         metric_mood_numeric > 5 ~ glue::glue("Jubilant: {team} are on a roll"),

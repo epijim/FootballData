@@ -7,10 +7,8 @@
 #' @param api_token The API token.
 #' @param competition_id The id for that competition. Optional
 #'
-#' @return Base url for API
+#' @return Dataframe with existing competitions.
 #'
-#' @examples
-#' football_api_url("football-data.org")
 #'
 #' @export
 football_get_competition <- function(

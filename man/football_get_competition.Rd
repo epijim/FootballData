@@ -18,13 +18,9 @@ football_get_competition(
 \item{api_token}{The API token.}
 }
 \value{
-Base url for API
+Dataframe with existing competitions.
 }
 \description{
 Get either information on what competitions exist, or a particular
 competition.
-}
-\examples{
-football_api_url("football-data.org")
-
 }

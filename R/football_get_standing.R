@@ -6,10 +6,8 @@
 #' @param api Name of API. Currently has \code{"football-data.org"}
 #' @param api_token Your API token
 #'
-#' @return Base url for API
+#' @return League standings as dataframe.
 #'
-#' @examples
-#' football_api_url("football-data.org")
 #'
 #' @export
 

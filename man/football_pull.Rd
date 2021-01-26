@@ -13,7 +13,9 @@ football_pull(
 \arguments{
 \item{api}{Name of API. Currently has \code{"football-data.org"}}
 
-\item{api_token}{}
+\item{api_endpoint}{Which API are you using.}
+
+\item{api_token}{The API token.}
 }
 \value{
 Base url for API
@@ -24,5 +26,5 @@ and this step is done over multiple functions.
 }
 \examples{
 # Will error as no API token
-football_api_url("football-data.org")
+FootballData:::football_api_url("football-data.org")
 }

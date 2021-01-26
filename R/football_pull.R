@@ -4,14 +4,14 @@
 #' and this step is done over multiple functions.
 #'
 #' @param api Name of API. Currently has \code{"football-data.org"}
-#' @param api_endpoint
-#' @param api_token
+#' @param api_endpoint Which API are you using.
+#' @param api_token The API token.
 #'
 #' @return Base url for API
 #'
 #' @examples
 #' # Will error as no API token
-#' football_api_url("football-data.org")
+#' FootballData:::football_api_url("football-data.org")
 football_pull <- function(
   api = "football-data.org",
   api_endpoint = "/competitions/",

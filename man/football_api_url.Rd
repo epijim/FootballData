@@ -16,5 +16,5 @@ Base url for API
 Adding in as potentially may allow package to work over a few APIs
 }
 \examples{
-football_api_url("football-data.org")
+FootballData:::football_api_url("football-data.org")
 }

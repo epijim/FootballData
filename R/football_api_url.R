@@ -7,7 +7,7 @@
 #' @return Base url for API
 #'
 #' @examples
-#' football_api_url("football-data.org")
+#' FootballData:::football_api_url("football-data.org")
 football_api_url <- function(api = "football-data.org"){
   switch(
     api,

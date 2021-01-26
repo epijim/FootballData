@@ -24,6 +24,6 @@ Base url for API
 Hits the matches API fixed on \code{status=SCHEDULED}.
 }
 \examples{
-football_api_url()
+football_get_upcoming()
 
 }

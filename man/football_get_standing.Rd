@@ -18,12 +18,8 @@ football_get_standing(
 \item{api_token}{Your API token}
 }
 \value{
-Base url for API
+League standings as dataframe.
 }
 \description{
 Adding in as potentially may allow package to work over a few APIs
-}
-\examples{
-football_api_url("football-data.org")
-
 }
