@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,11 +115,11 @@
     <p>Hits the matches API fixed on <code>status=SCHEDULED</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>football_get_upcoming</span>(
-  team_id = <span class='fl'>86</span>,
-  api = <span class='st'>"football-data.org"</span>,
-  api_token = <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"API_FOOTBALL_DATA"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>football_get_upcoming</span><span class='op'>(</span>
+  team_id <span class='op'>=</span> <span class='fl'>86</span>,
+  api <span class='op'>=</span> <span class='st'>"football-data.org"</span>,
+  api_token <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"API_FOOTBALL_DATA"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,249 +143,8 @@
     <p>Base url for API</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>football_get_upcoming</span>()
-</div><div class='output co'>#&gt;        id competition.id      competition.name competition.area.name
-#&gt; 1  308525           2014      Primera Division                 Spain
-#&gt; 2  308543           2014      Primera Division                 Spain
-#&gt; 3  308325           2014      Primera Division                 Spain
-#&gt; 4  308545           2014      Primera Division                 Spain
-#&gt; 5  308562           2014      Primera Division                 Spain
-#&gt; 6  315764           2001 UEFA Champions League                Europe
-#&gt; 7  308565           2014      Primera Division                 Spain
-#&gt; 8  308576           2014      Primera Division                 Spain
-#&gt; 9  308585           2014      Primera Division                 Spain
-#&gt; 10 315765           2001 UEFA Champions League                Europe
-#&gt; 11 308601           2014      Primera Division                 Spain
-#&gt; 12 308605           2014      Primera Division                 Spain
-#&gt; 13 308615           2014      Primera Division                 Spain
-#&gt; 14 308634           2014      Primera Division                 Spain
-#&gt; 15 308635           2014      Primera Division                 Spain
-#&gt; 16 308650           2014      Primera Division                 Spain
-#&gt; 17 308655           2014      Primera Division                 Spain
-#&gt; 18 308665           2014      Primera Division                 Spain
-#&gt; 19 308679           2014      Primera Division                 Spain
-#&gt; 20 308688           2014      Primera Division                 Spain
-#&gt; 21 308695           2014      Primera Division                 Spain
-#&gt;    competition.area.code
-#&gt; 1                    ESP
-#&gt; 2                    ESP
-#&gt; 3                    ESP
-#&gt; 4                    ESP
-#&gt; 5                    ESP
-#&gt; 6                    EUR
-#&gt; 7                    ESP
-#&gt; 8                    ESP
-#&gt; 9                    ESP
-#&gt; 10                   EUR
-#&gt; 11                   ESP
-#&gt; 12                   ESP
-#&gt; 13                   ESP
-#&gt; 14                   ESP
-#&gt; 15                   ESP
-#&gt; 16                   ESP
-#&gt; 17                   ESP
-#&gt; 18                   ESP
-#&gt; 19                   ESP
-#&gt; 20                   ESP
-#&gt; 21                   ESP
-#&gt;                                          competition.area.ensignUrl season.id
-#&gt; 1  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 2  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 3  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 4  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 5  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 6                                                              &lt;NA&gt;       642
-#&gt; 7  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 8  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 9  https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 10                                                             &lt;NA&gt;       642
-#&gt; 11 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 12 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 13 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 14 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 15 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 16 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 17 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 18 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 19 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 20 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt; 21 https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg       635
-#&gt;    season.startDate season.endDate season.currentMatchday season.winner
-#&gt; 1        2020-09-13     2021-05-23                     20            NA
-#&gt; 2        2020-09-13     2021-05-23                     20            NA
-#&gt; 3        2020-09-13     2021-05-23                     20            NA
-#&gt; 4        2020-09-13     2021-05-23                     20            NA
-#&gt; 5        2020-09-13     2021-05-23                     20            NA
-#&gt; 6        2020-08-08     2021-05-29                      6            NA
-#&gt; 7        2020-09-13     2021-05-23                     20            NA
-#&gt; 8        2020-09-13     2021-05-23                     20            NA
-#&gt; 9        2020-09-13     2021-05-23                     20            NA
-#&gt; 10       2020-08-08     2021-05-29                      6            NA
-#&gt; 11       2020-09-13     2021-05-23                     20            NA
-#&gt; 12       2020-09-13     2021-05-23                     20            NA
-#&gt; 13       2020-09-13     2021-05-23                     20            NA
-#&gt; 14       2020-09-13     2021-05-23                     20            NA
-#&gt; 15       2020-09-13     2021-05-23                     20            NA
-#&gt; 16       2020-09-13     2021-05-23                     20            NA
-#&gt; 17       2020-09-13     2021-05-23                     20            NA
-#&gt; 18       2020-09-13     2021-05-23                     20            NA
-#&gt; 19       2020-09-13     2021-05-23                     20            NA
-#&gt; 20       2020-09-13     2021-05-23                     20            NA
-#&gt; 21       2020-09-13     2021-05-23                     20            NA
-#&gt;                 utcDate    status matchday          stage          group
-#&gt; 1  2021-01-30T15:15:00Z SCHEDULED       21 REGULAR_SEASON Regular Season
-#&gt; 2  2021-02-06T15:15:00Z SCHEDULED       22 REGULAR_SEASON Regular Season
-#&gt; 3  2021-02-09T20:00:00Z SCHEDULED        1 REGULAR_SEASON Regular Season
-#&gt; 4  2021-02-15T00:00:00Z SCHEDULED       23 REGULAR_SEASON Regular Season
-#&gt; 5  2021-02-22T00:00:00Z SCHEDULED       24 REGULAR_SEASON Regular Season
-#&gt; 6  2021-02-24T20:00:00Z SCHEDULED       NA    ROUND_OF_16           &lt;NA&gt;
-#&gt; 7  2021-03-01T00:00:00Z SCHEDULED       25 REGULAR_SEASON Regular Season
-#&gt; 8  2021-03-08T00:00:00Z SCHEDULED       26 REGULAR_SEASON Regular Season
-#&gt; 9  2021-03-15T00:00:00Z SCHEDULED       27 REGULAR_SEASON Regular Season
-#&gt; 10 2021-03-16T20:00:00Z SCHEDULED       NA    ROUND_OF_16           &lt;NA&gt;
-#&gt; 11 2021-03-22T00:00:00Z SCHEDULED       28 REGULAR_SEASON Regular Season
-#&gt; 12 2021-04-05T00:00:00Z SCHEDULED       29 REGULAR_SEASON Regular Season
-#&gt; 13 2021-04-12T00:00:00Z SCHEDULED       30 REGULAR_SEASON Regular Season
-#&gt; 14 2021-04-22T00:00:00Z SCHEDULED       31 REGULAR_SEASON Regular Season
-#&gt; 15 2021-04-26T00:00:00Z SCHEDULED       32 REGULAR_SEASON Regular Season
-#&gt; 16 2021-04-29T00:00:00Z SCHEDULED       33 REGULAR_SEASON Regular Season
-#&gt; 17 2021-05-03T00:00:00Z SCHEDULED       34 REGULAR_SEASON Regular Season
-#&gt; 18 2021-05-10T00:00:00Z SCHEDULED       35 REGULAR_SEASON Regular Season
-#&gt; 19 2021-05-13T00:00:00Z SCHEDULED       36 REGULAR_SEASON Regular Season
-#&gt; 20 2021-05-17T00:00:00Z SCHEDULED       37 REGULAR_SEASON Regular Season
-#&gt; 21 2021-05-24T00:00:00Z SCHEDULED       38 REGULAR_SEASON Regular Season
-#&gt;             lastUpdated                                                   msg
-#&gt; 1  2021-01-13T15:32:54Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 2  2021-01-20T19:33:00Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 3  2021-01-21T15:32:58Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 4  2020-09-09T11:33:13Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 5  2020-09-09T11:33:14Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 6  2020-12-14T19:30:19Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 7  2020-09-09T11:33:14Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 8  2020-09-09T11:33:15Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 9  2020-09-09T11:33:15Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 10 2020-12-14T19:30:19Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 11 2020-09-09T11:33:16Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 12 2020-09-09T11:33:17Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 13 2020-09-09T11:33:17Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 14 2020-09-09T11:33:19Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 15 2020-09-09T11:33:19Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 16 2020-09-09T11:33:20Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 17 2020-09-09T11:33:20Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 18 2020-09-09T11:33:20Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 19 2020-09-09T11:33:21Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 20 2020-09-09T11:33:22Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt; 21 2020-09-09T11:33:22Z Activate Odds-Package in User-Panel to retrieve odds.
-#&gt;    score.winner score.duration score.fullTime.homeTeam score.fullTime.awayTeam
-#&gt; 1            NA        REGULAR                      NA                      NA
-#&gt; 2            NA        REGULAR                      NA                      NA
-#&gt; 3            NA        REGULAR                      NA                      NA
-#&gt; 4            NA        REGULAR                      NA                      NA
-#&gt; 5            NA        REGULAR                      NA                      NA
-#&gt; 6            NA        REGULAR                      NA                      NA
-#&gt; 7            NA        REGULAR                      NA                      NA
-#&gt; 8            NA        REGULAR                      NA                      NA
-#&gt; 9            NA        REGULAR                      NA                      NA
-#&gt; 10           NA        REGULAR                      NA                      NA
-#&gt; 11           NA        REGULAR                      NA                      NA
-#&gt; 12           NA        REGULAR                      NA                      NA
-#&gt; 13           NA        REGULAR                      NA                      NA
-#&gt; 14           NA        REGULAR                      NA                      NA
-#&gt; 15           NA        REGULAR                      NA                      NA
-#&gt; 16           NA        REGULAR                      NA                      NA
-#&gt; 17           NA        REGULAR                      NA                      NA
-#&gt; 18           NA        REGULAR                      NA                      NA
-#&gt; 19           NA        REGULAR                      NA                      NA
-#&gt; 20           NA        REGULAR                      NA                      NA
-#&gt; 21           NA        REGULAR                      NA                      NA
-#&gt;    score.halfTime.homeTeam score.halfTime.awayTeam score.extraTime.homeTeam
-#&gt; 1                       NA                      NA                       NA
-#&gt; 2                       NA                      NA                       NA
-#&gt; 3                       NA                      NA                       NA
-#&gt; 4                       NA                      NA                       NA
-#&gt; 5                       NA                      NA                       NA
-#&gt; 6                       NA                      NA                       NA
-#&gt; 7                       NA                      NA                       NA
-#&gt; 8                       NA                      NA                       NA
-#&gt; 9                       NA                      NA                       NA
-#&gt; 10                      NA                      NA                       NA
-#&gt; 11                      NA                      NA                       NA
-#&gt; 12                      NA                      NA                       NA
-#&gt; 13                      NA                      NA                       NA
-#&gt; 14                      NA                      NA                       NA
-#&gt; 15                      NA                      NA                       NA
-#&gt; 16                      NA                      NA                       NA
-#&gt; 17                      NA                      NA                       NA
-#&gt; 18                      NA                      NA                       NA
-#&gt; 19                      NA                      NA                       NA
-#&gt; 20                      NA                      NA                       NA
-#&gt; 21                      NA                      NA                       NA
-#&gt;    score.extraTime.awayTeam score.penalties.homeTeam score.penalties.awayTeam
-#&gt; 1                        NA                       NA                       NA
-#&gt; 2                        NA                       NA                       NA
-#&gt; 3                        NA                       NA                       NA
-#&gt; 4                        NA                       NA                       NA
-#&gt; 5                        NA                       NA                       NA
-#&gt; 6                        NA                       NA                       NA
-#&gt; 7                        NA                       NA                       NA
-#&gt; 8                        NA                       NA                       NA
-#&gt; 9                        NA                       NA                       NA
-#&gt; 10                       NA                       NA                       NA
-#&gt; 11                       NA                       NA                       NA
-#&gt; 12                       NA                       NA                       NA
-#&gt; 13                       NA                       NA                       NA
-#&gt; 14                       NA                       NA                       NA
-#&gt; 15                       NA                       NA                       NA
-#&gt; 16                       NA                       NA                       NA
-#&gt; 17                       NA                       NA                       NA
-#&gt; 18                       NA                       NA                       NA
-#&gt; 19                       NA                       NA                       NA
-#&gt; 20                       NA                       NA                       NA
-#&gt; 21                       NA                       NA                       NA
-#&gt;    homeTeam.id           homeTeam.name awayTeam.id           awayTeam.name
-#&gt; 1           86          Real Madrid CF          88              Levante UD
-#&gt; 2          299               SD Huesca          86          Real Madrid CF
-#&gt; 3           86          Real Madrid CF          82               Getafe CF
-#&gt; 4           86          Real Madrid CF          95             Valencia CF
-#&gt; 5          250      Real Valladolid CF          86          Real Madrid CF
-#&gt; 6          102             Atalanta BC          86          Real Madrid CF
-#&gt; 7           86          Real Madrid CF          92 Real Sociedad de Fútbol
-#&gt; 8           78 Club Atlético de Madrid          86          Real Madrid CF
-#&gt; 9           86          Real Madrid CF         285                Elche CF
-#&gt; 10          86          Real Madrid CF         102             Atalanta BC
-#&gt; 11         558        RC Celta de Vigo          86          Real Madrid CF
-#&gt; 12          86          Real Madrid CF         278                SD Eibar
-#&gt; 13          86          Real Madrid CF          81            FC Barcelona
-#&gt; 14         264                Cádiz CF          86          Real Madrid CF
-#&gt; 15          86          Real Madrid CF          90     Real Betis Balompié
-#&gt; 16          82               Getafe CF          86          Real Madrid CF
-#&gt; 17          86          Real Madrid CF          79              CA Osasuna
-#&gt; 18          86          Real Madrid CF         559              Sevilla FC
-#&gt; 19          83              Granada CF          86          Real Madrid CF
-#&gt; 20          77           Athletic Club          86          Real Madrid CF
-#&gt; 21          86          Real Madrid CF          94           Villarreal CF
-#&gt;    referees
-#&gt; 1      NULL
-#&gt; 2      NULL
-#&gt; 3      NULL
-#&gt; 4      NULL
-#&gt; 5      NULL
-#&gt; 6      NULL
-#&gt; 7      NULL
-#&gt; 8      NULL
-#&gt; 9      NULL
-#&gt; 10     NULL
-#&gt; 11     NULL
-#&gt; 12     NULL
-#&gt; 13     NULL
-#&gt; 14     NULL
-#&gt; 15     NULL
-#&gt; 16     NULL
-#&gt; 17     NULL
-#&gt; 18     NULL
-#&gt; 19     NULL
-#&gt; 20     NULL
-#&gt; 21     NULL</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>football_get_upcoming</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; NULL</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -402,7 +161,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

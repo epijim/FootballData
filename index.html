@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -66,25 +66,23 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#footballdata" class="anchor"></a>FootballData</h1></div>
 <p>To rebuild run <code>make build</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/tidyverse/glue">glue</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://haozhu233.github.io/kableExtra">kableExtra</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">FootballData</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">kableExtra</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">FootballData</span><span class="op">)</span>
 
-<span class="kw">select_country</span> <span class="op">&lt;-</span> <span class="st">"England"</span>
-<span class="kw">select_league</span> <span class="op">&lt;-</span> <span class="st">"Championship"</span>
-<span class="kw">select_team_interest</span> <span class="op">&lt;-</span> <span class="st">"Nottingham Forest FC"</span>
-</pre></div>
+<span class="va">select_country</span> <span class="op">&lt;-</span> <span class="st">"England"</span>
+<span class="va">select_league</span> <span class="op">&lt;-</span> <span class="st">"Championship"</span>
+<span class="va">select_team_interest</span> <span class="op">&lt;-</span> <span class="st">"Nottingham Forest FC"</span></code></pre></div>
 <div id="competitions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#competitions" class="anchor"></a>Competitions</h2>
 <p>Get all competitions.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">competitions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/football_get_competition.html">football_get_competition</a></span>()
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">competitions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/football_get_competition.html">football_get_competition</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="fu">glimpse</span>(<span class="kw">competitions</span>)
-</pre></div>
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">competitions</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## Rows: 150</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">## Columns: 6</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co">## $ league         &lt;chr&gt; "WC Qualification", "Primera B Nacional", "Superliga A…</span></span>
@@ -94,18 +92,16 @@
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">## $ url_flag       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, "https://upload.wikime…</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a><span class="co">## $ flag           &lt;glue&gt; NA, NA, NA, NA, NA, NA, NA, NA, "&lt;img src='https://up…</span></span></code></pre></div>
 <p>Filter to the ones on the free plan.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">competitions_curated</span> <span class="op">&lt;-</span> <span class="kw">competitions</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(
-    <span class="kw">plan</span> <span class="op">==</span> <span class="st">"TIER_ONE"</span> 
-  )
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">competitions_curated</span> <span class="op">&lt;-</span> <span class="va">competitions</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
+    <span class="va">plan</span> <span class="op">==</span> <span class="st">"TIER_ONE"</span> 
+  <span class="op">)</span></code></pre></div>
 <p>Show them.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">competitions_curated</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(<span class="kw">country</span>,<span class="kw">league</span>,<span class="kw">flag</span>) <span class="op">%&gt;%</span>
-  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>) 
-</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">competitions_curated</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">country</span>,<span class="va">league</span>,<span class="va">flag</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> </code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -258,17 +254,16 @@
 <h2 class="hasAnchor">
 <a href="#league-info" class="anchor"></a>League info</h2>
 <p>Look at England - Championship.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">league</span> <span class="op">&lt;-</span> <span class="kw">competitions_curated</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">country</span> <span class="op">==</span> <span class="kw">select_country</span> <span class="op">&amp;</span> <span class="kw">league</span> <span class="op">==</span> <span class="kw">select_league</span>) <span class="op">%&gt;%</span>
-  <span class="fu">pull</span>(<span class="kw">competition_id</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/football_get_teams.html">football_get_teams</a></span>()
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">league</span> <span class="op">&lt;-</span> <span class="va">competitions_curated</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="va">select_country</span> <span class="op">&amp;</span> <span class="va">league</span> <span class="op">==</span> <span class="va">select_league</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">competition_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/football_get_teams.html">football_get_teams</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">league</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(<span class="kw">team</span>,<span class="kw">crest</span>) <span class="op">%&gt;%</span>
-  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
-</pre></div>
+<span class="va">league</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">team</span>,<span class="va">crest</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -478,15 +473,14 @@
 <h2 class="hasAnchor">
 <a href="#standings" class="anchor"></a>Standings</h2>
 <p>What’s the current league standings.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">standings</span> <span class="op">&lt;-</span> <span class="kw">competitions_curated</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">country</span> <span class="op">==</span> <span class="kw">select_country</span> <span class="op">&amp;</span> <span class="kw">league</span> <span class="op">==</span> <span class="kw">select_league</span>) <span class="op">%&gt;%</span>
-  <span class="fu">pull</span>(<span class="kw">competition_id</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/football_get_standing.html">football_get_standing</a></span>()
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">standings</span> <span class="op">&lt;-</span> <span class="va">competitions_curated</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="va">select_country</span> <span class="op">&amp;</span> <span class="va">league</span> <span class="op">==</span> <span class="va">select_league</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">competition_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/football_get_standing.html">football_get_standing</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="fu">glimpse</span>(<span class="kw">standings</span>)
-</pre></div>
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">standings</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## Rows: 24</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">## Columns: 14</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co">## $ position       &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…</span></span>
@@ -503,11 +497,10 @@
 <span id="cb8-14"><a href="#cb8-14"></a><span class="co">## $ team           &lt;chr&gt; "Norwich City FC", "Watford FC", "Swansea City AFC", "…</span></span>
 <span id="cb8-15"><a href="#cb8-15"></a><span class="co">## $ url_team       &lt;chr&gt; "https://upload.wikimedia.org/wikipedia/en/8/8c/Norwic…</span></span>
 <span id="cb8-16"><a href="#cb8-16"></a><span class="co">## $ crest          &lt;glue&gt; "&lt;img src='https://upload.wikimedia.org/wikipedia/en/…</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">standings</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(<span class="kw">position</span>,<span class="kw">points</span>,<span class="kw">team</span>,<span class="kw">form</span>,<span class="kw">crest</span>) <span class="op">%&gt;%</span>
-  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
-</pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">standings</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">position</span>,<span class="va">points</span>,<span class="va">team</span>,<span class="va">form</span>,<span class="va">crest</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:right;">
@@ -941,18 +934,17 @@
 <div id="scheduled-games" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scheduled-games" class="anchor"></a>Scheduled games</h2>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">upcoming_foe_data</span> <span class="op">&lt;-</span> <span class="kw">standings</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(
-      <span class="kw">team</span> <span class="op">==</span> <span class="kw">select_team_interest</span>
-    ) <span class="op">%&gt;%</span>
-  <span class="fu">pull</span>(<span class="kw">team_id</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/football_get_upcoming.html">football_get_upcoming</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span>(<span class="kw">utcDate</span>) 
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">upcoming_foe_data</span> <span class="op">&lt;-</span> <span class="va">standings</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
+      <span class="va">team</span> <span class="op">==</span> <span class="va">select_team_interest</span>
+    <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">team_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/football_get_upcoming.html">football_get_upcoming</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">utcDate</span><span class="op">)</span> 
 
-<span class="fu">glimpse</span>(<span class="kw">upcoming_foe_data</span>)
-</pre></div>
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">upcoming_foe_data</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## Rows: 21</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="co">## Columns: 14</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co">## $ id          &lt;int&gt; 306684, 306676, 306704, 306708, 306723, 306732, 306745, 3…</span></span>
@@ -973,33 +965,32 @@
 <div id="metrics---league" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metrics---league" class="anchor"></a>Metrics - League</h2>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/football_calculate_competition_metrics.html">football_calculate_competition_metrics</a></span>(<span class="kw">standings</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/football_calculate_competition_metrics.html">football_calculate_competition_metrics</a></span><span class="op">(</span><span class="va">standings</span><span class="op">)</span>
 
 <span class="co"># table</span>
-<span class="kw">metrics</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span>(Team = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">crest</span>,<span class="kw">team</span>)) <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(<span class="kw">Team</span>, Mood = <span class="kw">metric_mood</span>)  <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span>(
-    Mood = <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="kw">Mood</span>),
-    Mood = <span class="fu">case_when</span>(
-      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Jubilant"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
-        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#98FB98"</span>
-      ),
-      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Optimistic"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
-        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#e5f5f9"</span>
-      ),
-      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Ambivalent"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
-        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#f7fcb9"</span>
-      ),
-      <span class="fu">str_detect</span>(<span class="kw">Mood</span>,<span class="st">"Doldrums"</span>) <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
-        <span class="kw">Mood</span>, color = <span class="st">"black"</span>, background = <span class="st">"#ffc4c4"</span>
-      ),
-      <span class="fl">TRUE</span> <span class="op">~</span> <span class="kw">Mood</span>
-    )
-  ) <span class="op">%&gt;%</span>
-  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
-</pre></div>
+<span class="va">metrics</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>Team <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">crest</span>,<span class="va">team</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">Team</span>, Mood <span class="op">=</span> <span class="va">metric_mood</span><span class="op">)</span>  <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>
+    Mood <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">Mood</span><span class="op">)</span>,
+    Mood <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Jubilant"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+        <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#98FB98"</span>
+      <span class="op">)</span>,
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Optimistic"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+        <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#e5f5f9"</span>
+      <span class="op">)</span>,
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Ambivalent"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+        <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#f7fcb9"</span>
+      <span class="op">)</span>,
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Doldrums"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+        <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#ffc4c4"</span>
+      <span class="op">)</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">Mood</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -1208,41 +1199,40 @@
 <div id="metrics---team" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metrics---team" class="anchor"></a>Metrics - Team</h2>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="kw">metrics_team</span> <span class="op">&lt;-</span> <span class="kw">metrics</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">team</span> <span class="op">==</span> <span class="kw">select_team_interest</span>)
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">metrics_team</span> <span class="op">&lt;-</span> <span class="va">metrics</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">team</span> <span class="op">==</span> <span class="va">select_team_interest</span><span class="op">)</span>
 
-<span class="kw">metrics_team_summary</span> <span class="op">&lt;-</span> <span class="kw">metrics_team</span> <span class="op">%&gt;%</span> <span class="fu">select</span>(<span class="kw">team</span>,<span class="kw">crest</span>,<span class="kw">metric_mood</span>)
+<span class="va">metrics_team_summary</span> <span class="op">&lt;-</span> <span class="va">metrics_team</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">team</span>,<span class="va">crest</span>,<span class="va">metric_mood</span><span class="op">)</span>
 
-<span class="kw">metrics_team</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">metric_mood_numeric</span>,<span class="kw">metric_mood</span>)) <span class="op">%&gt;%</span>
-  <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">"metric"</span>),
-               names_to = <span class="st">"Variable"</span>,
-               values_to = <span class="st">"Modifier"</span>
-               ) <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span>(
-    Effect = <span class="fu">case_when</span>(
-      <span class="fu">str_detect</span>(<span class="kw">Modifier</span>, <span class="st">"\\+"</span>) <span class="op">~</span> <span class="st">"Positive"</span>,
-      <span class="fu">str_detect</span>(<span class="kw">Modifier</span>, <span class="st">"\\-"</span>) <span class="op">~</span> <span class="st">"Negative"</span>,
-      <span class="fl">TRUE</span> <span class="op">~</span> <span class="st">"Neutral"</span>
-    )
-  ) <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(
-    <span class="kw">Effect</span>,<span class="kw">Modifier</span>
-  ) <span class="op">%&gt;%</span> <span class="fu">arrange</span>(<span class="kw">Effect</span>) <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span>(
-    Effect = <span class="fu">case_when</span>(
-      <span class="kw">Effect</span> <span class="op">==</span> <span class="st">"Negative"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
-        <span class="kw">Effect</span>, color = <span class="st">"white"</span>, bold = <span class="fl">TRUE</span>, background = <span class="st">"#F66E5CFF"</span>
-        ),
-      <span class="kw">Effect</span> <span class="op">==</span> <span class="st">"Positive"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span>(
-        <span class="kw">Effect</span>, color = <span class="st">"white"</span>, bold = <span class="fl">TRUE</span>, background = <span class="st">"#228B22"</span>
-      ),
-      <span class="fl">TRUE</span> <span class="op">~</span> <span class="kw">Effect</span>
-    )
-  ) <span class="op">%&gt;%</span>
-  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(escape = <span class="kw">F</span>)
-</pre></div>
+<span class="va">metrics_team</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">metric_mood_numeric</span>,<span class="va">metric_mood</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pivot_longer</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"metric"</span><span class="op">)</span>,
+               names_to <span class="op">=</span> <span class="st">"Variable"</span>,
+               values_to <span class="op">=</span> <span class="st">"Modifier"</span>
+               <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>
+    Effect <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Modifier</span>, <span class="st">"\\+"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Positive"</span>,
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Modifier</span>, <span class="st">"\\-"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Negative"</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Neutral"</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span>
+    <span class="va">Effect</span>,<span class="va">Modifier</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">Effect</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>
+    Effect <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
+      <span class="va">Effect</span> <span class="op">==</span> <span class="st">"Negative"</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+        <span class="va">Effect</span>, color <span class="op">=</span> <span class="st">"white"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"#F66E5CFF"</span>
+        <span class="op">)</span>,
+      <span class="va">Effect</span> <span class="op">==</span> <span class="st">"Positive"</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+        <span class="va">Effect</span>, color <span class="op">=</span> <span class="st">"white"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"#228B22"</span>
+      <span class="op">)</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">Effect</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -1315,7 +1305,7 @@ drew last game
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
