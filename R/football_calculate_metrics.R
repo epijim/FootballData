@@ -15,9 +15,9 @@ football_calculate_competition_metrics <- function(
   n_rows <- nrow(competition_standings)
 
   competition_standings %>%
-    arrange(position) %>%
-    mutate(
-      metric_season_position = case_when(
+    dplyr::arrange(position) %>%
+    dplyr::mutate(
+      metric_season_position = dplyr::case_when(
         position == min(position) ~ "++++ top of the league",
         position >= max(position) - 1 ~ "---- relagation?",
         position / max(position) < 0.2 ~ "++ strong league position",
@@ -25,7 +25,7 @@ football_calculate_competition_metrics <- function(
         position / max(position) < 0.8 ~ "- so so season",
         position / max(position) < 1.1 ~ "-- poor season",
       ),
-      metric_recent_wins = case_when(
+      metric_recent_wins = dplyr::case_when(
         str_count(form,"W") == 5 ~ "++++ 5 win streak",
         str_count(form,"L") == 5 ~ "---- 5 loss streak",
         str_count(form,"W") >= 3 ~ "++ recent wins",
@@ -38,7 +38,7 @@ football_calculate_competition_metrics <- function(
         TRUE ~ "recent performance uncategorised"
       ),
       working = sd(goalDifference),
-      metric_back_of_net = case_when(
+      metric_back_of_net = dplyr::case_when(
         goalDifference > sd(goalDifference) ~ "+++ strikers are on form",
         goalDifference < -sd(goalDifference) ~ "--- defense is a seive",
         goalDifference > 0 ~ "+ scored more than conceded",
@@ -46,22 +46,26 @@ football_calculate_competition_metrics <- function(
         goalDifference == 0 ~ "one goal for every one conceded",
         TRUE ~ "recent goal difference uncategorised"
       )
-    ) %>% rowwise() %>%
-    mutate(concat = paste0(c_across(starts_with("metric_")), collapse = "")) %>%
-    mutate(
-      plus = str_count(concat,"\\+"),
-      neg = str_count(concat,"\\-"),
+    ) %>% dplyr::rowwise() %>%
+    dplyr::mutate(
+      concat = paste0(
+        dplyr::c_across(starts_with("metric_")),
+        collapse = "")
+      ) %>%
+    dplyr::mutate(
+      plus = dplyr::str_count(concat,"\\+"),
+      neg = dplyr::str_count(concat,"\\-"),
       metric_mood_numeric = plus - neg,
-      metric_mood = case_when(
-        metric_mood_numeric > 5 ~ glue("Jubilant: {team} are on a roll"),
-        metric_mood_numeric > 0 ~ glue("Optimistic: {team} are doing well"),
-        position == n_rows ~ glue("Doldrums: {team} are doing poorly. Avoid supporters at all costs."),
+      metric_mood = dplyr::case_when(
+        metric_mood_numeric > 5 ~ glue::glue("Jubilant: {team} are on a roll"),
+        metric_mood_numeric > 0 ~ glue::glue("Optimistic: {team} are doing well"),
+        position == n_rows ~ glue::glue("Doldrums: {team} are doing poorly. Avoid supporters at all costs."),
         metric_mood_numeric > -5 ~
-          glue("Ambivalent: {team} aren't doing well, but hey - at least they aren't {competition_standings %>% slice(n()) %>% pull(team)}"),
-        TRUE ~ glue("Doldrums: {team} are doing poor. Now's a good time to bad mouth the manager.")
+          glue::glue("Ambivalent: {team} aren't doing well, but hey - at least they aren't {competition_standings %>% slice(n()) %>% pull(team)}"),
+        TRUE ~ glue::glue("Doldrums: {team} are doing poor. Now's a good time to bad mouth the manager.")
       )
     ) %>%
-    select(
-      team,crest,points,starts_with("metric")
+    dplyr::select(
+      team,crest,points,dplyr::starts_with("metric")
     )
 }

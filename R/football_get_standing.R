@@ -31,17 +31,17 @@ football_get_standing <- function(
 
   data_clean <- data$standings$table[[1]]
 
-  data_clean <- bind_cols(
+  data_clean <- dplyr::bind_cols(
     data_clean %>%
-      select(
+      dplyr::select(
         position,playedGames,form,won,draw,lost,points,
         goalsFor,goalsAgainst,goalDifference
       ),
     data_clean$team %>%
-      select(team_id = id,team = name,url_team = crestUrl)  %>%
-      mutate(
-        crest = case_when(
-          !is.na(url_team) ~ glue("<img src='{url_team}' height='24'></img>"),
+      dplyr::select(team_id = id,team = name,url_team = crestUrl)  %>%
+      dplyr::mutate(
+        crest = dplyr::case_when(
+          !is.na(url_team) ~ glue::glue("<img src='{url_team}' height='24'></img>"),
           TRUE ~ NA_character_
         )
       )

@@ -39,9 +39,9 @@ football_get_teams <- function(
       team_short = shortName,
       url_team = crestUrl
     ) %>%
-    mutate(
-      crest = case_when(
-        !is.na(url_team) ~ glue("<img src='{url_team}' height='24'></img>"),
+    dplyr::mutate(
+      crest = dplyr::case_when(
+        !is.na(url_team) ~ glue::glue("<img src='{url_team}' height='24'></img>"),
         TRUE ~ NA_character_
       )
     )
