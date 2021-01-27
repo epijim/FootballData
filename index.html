@@ -68,8 +68,8 @@
 <p>To rebuild run <code>make build</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">kableExtra</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">FootballData</span><span class="op">)</span>
 
 <span class="va">select_country</span> <span class="op">&lt;-</span> <span class="st">"England"</span>
@@ -975,16 +975,16 @@
   <span class="fu">mutate</span><span class="op">(</span>
     Mood <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">Mood</span><span class="op">)</span>,
     Mood <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
-      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Jubilant"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Jubilant"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span><span class="op">(</span>
         <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#98FB98"</span>
       <span class="op">)</span>,
-      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Optimistic"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Optimistic"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span><span class="op">(</span>
         <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#e5f5f9"</span>
       <span class="op">)</span>,
-      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Ambivalent"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Ambivalent"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span><span class="op">(</span>
         <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#f7fcb9"</span>
       <span class="op">)</span>,
-      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Doldrums"</span><span class="op">)</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+      <span class="fu">str_detect</span><span class="op">(</span><span class="va">Mood</span>,<span class="st">"Doldrums"</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span><span class="op">(</span>
         <span class="va">Mood</span>, color <span class="op">=</span> <span class="st">"black"</span>, background <span class="op">=</span> <span class="st">"#ffc4c4"</span>
       <span class="op">)</span>,
       <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">Mood</span>
@@ -1223,10 +1223,10 @@
   <span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">Effect</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>
     Effect <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
-      <span class="va">Effect</span> <span class="op">==</span> <span class="st">"Negative"</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+      <span class="va">Effect</span> <span class="op">==</span> <span class="st">"Negative"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span><span class="op">(</span>
         <span class="va">Effect</span>, color <span class="op">=</span> <span class="st">"white"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"#F66E5CFF"</span>
         <span class="op">)</span>,
-      <span class="va">Effect</span> <span class="op">==</span> <span class="st">"Positive"</span> <span class="op">~</span> <span class="fu">cell_spec</span><span class="op">(</span>
+      <span class="va">Effect</span> <span class="op">==</span> <span class="st">"Positive"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/cell_spec.html">cell_spec</a></span><span class="op">(</span>
         <span class="va">Effect</span>, color <span class="op">=</span> <span class="st">"white"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"#228B22"</span>
       <span class="op">)</span>,
       <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">Effect</span>
