@@ -24,7 +24,7 @@ competitions <- football_get_competition()
 glimpse(competitions)
 ```
 
-    ## Rows: 150
+    ## Rows: 152
     ## Columns: 6
     ## $ league         <chr> "WC Qualification", "Primera B Nacional", "Superliga A…
     ## $ competition_id <int> 2006, 2023, 2024, 2149, 2025, 2147, 2008, 2026, 2020, …
@@ -793,17 +793,17 @@ glimpse(standings)
     ## Rows: 24
     ## Columns: 14
     ## $ position       <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…
-    ## $ playedGames    <int> 25, 26, 24, 23, 25, 25, 25, 25, 26, 25, 26, 25, 25, 26…
-    ## $ form           <chr> "W,W,W,D,L", "D,W,W,W,L", "W,W,D,W,W", "W,W,W,W,D", "D…
-    ## $ won            <int> 16, 13, 13, 12, 13, 11, 11, 12, 9, 10, 11, 10, 9, 9, 6…
-    ## $ draw           <int> 5, 8, 7, 8, 5, 9, 6, 3, 10, 6, 3, 4, 6, 4, 12, 5, 9, 8…
-    ## $ lost           <int> 4, 5, 4, 3, 7, 5, 8, 10, 7, 9, 12, 11, 10, 13, 7, 11, …
-    ## $ points         <int> 53, 47, 46, 44, 44, 42, 39, 39, 37, 36, 36, 34, 33, 31…
-    ## $ goalsFor       <int> 35, 30, 29, 37, 37, 38, 30, 27, 31, 40, 31, 27, 21, 29…
-    ## $ goalsAgainst   <int> 21, 18, 13, 21, 28, 21, 21, 27, 28, 28, 33, 32, 27, 37…
-    ## $ goalDifference <int> 14, 12, 16, 16, 9, 17, 9, 0, 3, 12, -2, -5, -6, -8, -3…
-    ## $ team_id        <int> 68, 346, 72, 402, 355, 1044, 343, 387, 70, 59, 1081, 3…
-    ## $ team           <chr> "Norwich City FC", "Watford FC", "Swansea City AFC", "…
+    ## $ playedGames    <int> 28, 27, 27, 27, 28, 28, 28, 27, 28, 28, 28, 27, 28, 27…
+    ## $ form           <chr> "L,D,D,W,W", "W,W,W,D,W", "W,W,D,W,W", "D,W,D,W,W", "D…
+    ## $ won            <int> 16, 15, 15, 14, 13, 12, 11, 11, 9, 12, 11, 10, 7, 9, 9…
+    ## $ draw           <int> 7, 9, 8, 6, 9, 9, 7, 6, 12, 3, 3, 6, 14, 7, 7, 9, 6, 8…
+    ## $ lost           <int> 5, 3, 4, 7, 6, 7, 10, 10, 7, 13, 14, 11, 7, 11, 11, 10…
+    ## $ points         <int> 55, 54, 53, 48, 48, 45, 40, 39, 39, 39, 36, 36, 35, 34…
+    ## $ goalsFor       <int> 35, 52, 35, 40, 31, 43, 31, 41, 32, 29, 32, 29, 26, 35…
+    ## $ goalsAgainst   <int> 23, 27, 15, 29, 20, 28, 28, 29, 29, 33, 36, 34, 26, 31…
+    ## $ goalDifference <int> 12, 25, 20, 11, 11, 15, 3, 12, 3, -4, -4, -5, 0, 4, -7…
+    ## $ team_id        <int> 68, 402, 72, 355, 346, 1044, 343, 59, 70, 387, 1081, 3…
+    ## $ team           <chr> "Norwich City FC", "Brentford FC", "Swansea City AFC",…
     ## $ url_team       <chr> "https://upload.wikimedia.org/wikipedia/en/8/8c/Norwic…
     ## $ crest          <glue> "<img src='https://upload.wikimedia.org/wikipedia/en/…
 
@@ -865,7 +865,7 @@ crest
 
 <td style="text-align:right;">
 
-53
+55
 
 </td>
 
@@ -877,7 +877,7 @@ Norwich City FC
 
 <td style="text-align:left;">
 
-W,W,W,D,L
+L,D,D,W,W
 
 </td>
 
@@ -899,25 +899,25 @@ W,W,W,D,L
 
 <td style="text-align:right;">
 
-47
+54
 
 </td>
 
 <td style="text-align:left;">
 
-Watford FC
+Brentford FC
 
 </td>
 
 <td style="text-align:left;">
 
-D,W,W,W,L
+W,W,W,D,W
 
 </td>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/346.svg' height='24'></img>
+<img src='https://crests.football-data.org/402.svg' height='24'></img>
 
 </td>
 
@@ -933,7 +933,7 @@ D,W,W,W,L
 
 <td style="text-align:right;">
 
-46
+53
 
 </td>
 
@@ -967,41 +967,7 @@ W,W,D,W,W
 
 <td style="text-align:right;">
 
-44
-
-</td>
-
-<td style="text-align:left;">
-
-Brentford FC
-
-</td>
-
-<td style="text-align:left;">
-
-W,W,W,W,D
-
-</td>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/402.svg' height='24'></img>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:right;">
-
-5
-
-</td>
-
-<td style="text-align:right;">
-
-44
+48
 
 </td>
 
@@ -1013,7 +979,7 @@ Reading FC
 
 <td style="text-align:left;">
 
-D,W,W,D,W
+D,W,D,W,W
 
 </td>
 
@@ -1029,13 +995,47 @@ D,W,W,D,W
 
 <td style="text-align:right;">
 
+5
+
+</td>
+
+<td style="text-align:right;">
+
+48
+
+</td>
+
+<td style="text-align:left;">
+
+Watford FC
+
+</td>
+
+<td style="text-align:left;">
+
+D,L,D,W,W
+
+</td>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/346.svg' height='24'></img>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
 6
 
 </td>
 
 <td style="text-align:right;">
 
-42
+45
 
 </td>
 
@@ -1047,7 +1047,7 @@ AFC Bournemouth
 
 <td style="text-align:left;">
 
-L,L,D,W,L
+W,L,L,L,L
 
 </td>
 
@@ -1069,7 +1069,7 @@ L,L,D,W,L
 
 <td style="text-align:right;">
 
-39
+40
 
 </td>
 
@@ -1081,7 +1081,7 @@ Middlesbrough FC
 
 <td style="text-align:left;">
 
-L,W,L,W,L
+L,D,L,L,W
 
 </td>
 
@@ -1109,19 +1109,19 @@ L,W,L,W,L
 
 <td style="text-align:left;">
 
-Bristol City FC
+Blackburn Rovers FC
 
 </td>
 
 <td style="text-align:left;">
 
-W,L,W,L,W
+L,W,W,D,W
 
 </td>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/387.svg' height='24'></img>
+<img src='https://crests.football-data.org/59.svg' height='24'></img>
 
 </td>
 
@@ -1137,7 +1137,7 @@ W,L,W,L,W
 
 <td style="text-align:right;">
 
-37
+39
 
 </td>
 
@@ -1149,7 +1149,7 @@ Stoke City FC
 
 <td style="text-align:left;">
 
-L,D,D,L,D
+D,D,L,D,D
 
 </td>
 
@@ -1171,25 +1171,25 @@ L,D,D,L,D
 
 <td style="text-align:right;">
 
-36
+39
 
 </td>
 
 <td style="text-align:left;">
 
-Blackburn Rovers FC
+Bristol City FC
 
 </td>
 
 <td style="text-align:left;">
 
-W,D,W,L,D
+L,L,L,W,L
 
 </td>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/59.svg' height='24'></img>
+<img src='https://crests.football-data.org/387.svg' height='24'></img>
 
 </td>
 
@@ -1217,7 +1217,7 @@ Preston North End FC
 
 <td style="text-align:left;">
 
-D,W,L,L,W
+L,L,D,W,L
 
 </td>
 
@@ -1239,7 +1239,7 @@ D,W,L,L,W
 
 <td style="text-align:right;">
 
-34
+36
 
 </td>
 
@@ -1251,7 +1251,7 @@ Barnsley FC
 
 <td style="text-align:left;">
 
-L,L,L,W,W
+D,D,L,L,L
 
 </td>
 
@@ -1273,75 +1273,7 @@ L,L,L,W,W
 
 <td style="text-align:right;">
 
-33
-
-</td>
-
-<td style="text-align:left;">
-
-Luton Town FC
-
-</td>
-
-<td style="text-align:left;">
-
-L,W,L,W,L
-
-</td>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/389.svg' height='24'></img>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:right;">
-
-14
-
-</td>
-
-<td style="text-align:right;">
-
-31
-
-</td>
-
-<td style="text-align:left;">
-
-Huddersfield Town AFC
-
-</td>
-
-<td style="text-align:left;">
-
-L,L,L,L,W
-
-</td>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/394.svg' height='24'></img>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:right;">
-
-15
-
-</td>
-
-<td style="text-align:right;">
-
-30
+35
 
 </td>
 
@@ -1353,7 +1285,7 @@ Millwall FC
 
 <td style="text-align:left;">
 
-D,W,L,D,L
+W,D,D,D,W
 
 </td>
 
@@ -1369,13 +1301,13 @@ D,W,L,D,L
 
 <td style="text-align:right;">
 
-16
+14
 
 </td>
 
 <td style="text-align:right;">
 
-29
+34
 
 </td>
 
@@ -1387,7 +1319,7 @@ Cardiff City FC
 
 <td style="text-align:left;">
 
-L,L,L,L,L
+W,D,D,L,L
 
 </td>
 
@@ -1403,13 +1335,47 @@ L,L,L,L,L
 
 <td style="text-align:right;">
 
-17
+15
 
 </td>
 
 <td style="text-align:right;">
 
-27
+34
+
+</td>
+
+<td style="text-align:left;">
+
+Luton Town FC
+
+</td>
+
+<td style="text-align:left;">
+
+D,L,L,W,L
+
+</td>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/389.svg' height='24'></img>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+16
+
+</td>
+
+<td style="text-align:right;">
+
+33
 
 </td>
 
@@ -1421,7 +1387,7 @@ Queens Park Rangers FC
 
 <td style="text-align:left;">
 
-L,W,W,D,L
+W,W,L,W,W
 
 </td>
 
@@ -1437,81 +1403,47 @@ L,W,W,D,L
 
 <td style="text-align:right;">
 
+17
+
+</td>
+
+<td style="text-align:right;">
+
+33
+
+</td>
+
+<td style="text-align:left;">
+
+Huddersfield Town AFC
+
+</td>
+
+<td style="text-align:left;">
+
+D,D,L,L,L
+
+</td>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/394.svg' height='24'></img>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
 18
 
 </td>
 
 <td style="text-align:right;">
 
-26
-
-</td>
-
-<td style="text-align:left;">
-
-Coventry City FC
-
-</td>
-
-<td style="text-align:left;">
-
-L,W,L,D,L
-
-</td>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/1076.svg' height='24'></img>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:right;">
-
-19
-
-</td>
-
-<td style="text-align:right;">
-
-26
-
-</td>
-
-<td style="text-align:left;">
-
-Birmingham City FC
-
-</td>
-
-<td style="text-align:left;">
-
-L,W,L,L,D
-
-</td>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/332.svg' height='24'></img>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:right;">
-
-20
-
-</td>
-
-<td style="text-align:right;">
-
-25
+32
 
 </td>
 
@@ -1523,7 +1455,7 @@ Nottingham Forest FC
 
 <td style="text-align:left;">
 
-L,W,W,D,D
+W,W,D,L,W
 
 </td>
 
@@ -1539,13 +1471,81 @@ L,W,W,D,D
 
 <td style="text-align:right;">
 
+19
+
+</td>
+
+<td style="text-align:right;">
+
+31
+
+</td>
+
+<td style="text-align:left;">
+
+Coventry City FC
+
+</td>
+
+<td style="text-align:left;">
+
+D,L,D,W,L
+
+</td>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/1076.svg' height='24'></img>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+20
+
+</td>
+
+<td style="text-align:right;">
+
+29
+
+</td>
+
+<td style="text-align:left;">
+
+Rotherham United FC
+
+</td>
+
+<td style="text-align:left;">
+
+W,W,L,W,D
+
+</td>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/385.svg' height='24'></img>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
 21
 
 </td>
 
 <td style="text-align:right;">
 
-25
+28
 
 </td>
 
@@ -1557,7 +1557,7 @@ Derby County FC
 
 <td style="text-align:left;">
 
-W,W,L,L,W
+L,W,W,W,L
 
 </td>
 
@@ -1579,25 +1579,25 @@ W,W,L,L,W
 
 <td style="text-align:right;">
 
-20
+28
 
 </td>
 
 <td style="text-align:left;">
 
-Rotherham United FC
+Birmingham City FC
 
 </td>
 
 <td style="text-align:left;">
 
-D,W,L,L,W
+L,D,D,L,W
 
 </td>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/385.svg' height='24'></img>
+<img src='https://crests.football-data.org/332.svg' height='24'></img>
 
 </td>
 
@@ -1613,25 +1613,25 @@ D,W,L,L,W
 
 <td style="text-align:right;">
 
-15
+19
 
 </td>
 
 <td style="text-align:left;">
 
-Wycombe Wanderers FC
+Sheffield Wednesday FC
 
 </td>
 
 <td style="text-align:left;">
 
-L,W,L,D,L
+L,W,W,L,W
 
 </td>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/1146.svg' height='24'></img>
+<img src='https://crests.football-data.org/345.svg' height='24'></img>
 
 </td>
 
@@ -1647,25 +1647,25 @@ L,W,L,D,L
 
 <td style="text-align:right;">
 
-13
+16
 
 </td>
 
 <td style="text-align:left;">
 
-Sheffield Wednesday FC
+Wycombe Wanderers FC
 
 </td>
 
 <td style="text-align:left;">
 
-W,W,D,W,L
+L,D,L,L,W
 
 </td>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/345.svg' height='24'></img>
+<img src='https://crests.football-data.org/1146.svg' height='24'></img>
 
 </td>
 
@@ -1690,21 +1690,21 @@ upcoming_foe_data <- standings %>%
 glimpse(upcoming_foe_data)
 ```
 
-    ## Rows: 21
+    ## Rows: 18
     ## Columns: 14
-    ## $ id          <int> 306684, 306676, 306704, 306708, 306723, 306732, 306745, 3…
-    ## $ competition <df[,3]> <data.frame[21 x 3]>
-    ## $ season      <df[,5]> <data.frame[21 x 5]>
-    ## $ utcDate     <chr> "2021-01-30T15:00:00Z", "2021-02-02T19:00:00Z", "2021-02-…
+    ## $ id          <int> 306708, 306723, 306732, 306745, 306756, 306765, 306785, 3…
+    ## $ competition <df[,3]> <data.frame[18 x 3]>
+    ## $ season      <df[,5]> <data.frame[18 x 5]>
+    ## $ utcDate     <chr> "2021-02-13T12:30:00Z", "2021-02-17T19:00:00Z", "2021-02-…
     ## $ status      <chr> "SCHEDULED", "SCHEDULED", "SCHEDULED", "SCHEDULED", "SCHE…
-    ## $ matchday    <int> 27, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 4…
+    ## $ matchday    <int> 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 4…
     ## $ stage       <chr> "REGULAR_SEASON", "REGULAR_SEASON", "REGULAR_SEASON", "RE…
     ## $ group       <chr> "Regular Season", "Regular Season", "Regular Season", "Re…
-    ## $ lastUpdated <chr> "2020-08-30T09:34:12Z", "2021-01-18T19:33:54Z", "2020-08-…
-    ## $ odds        <df[,1]> <data.frame[21 x 1]>
-    ## $ score       <df[,6]> <data.frame[21 x 6]>
-    ## $ homeTeam    <df[,2]> <data.frame[21 x 2]>
-    ## $ awayTeam    <df[,2]> <data.frame[21 x 2]>
+    ## $ lastUpdated <chr> "2021-01-22T19:33:55Z", "2021-01-26T23:33:52Z", "2020-08-…
+    ## $ odds        <df[,1]> <data.frame[18 x 1]>
+    ## $ score       <df[,6]> <data.frame[18 x 6]>
+    ## $ homeTeam    <df[,2]> <data.frame[18 x 2]>
+    ## $ awayTeam    <df[,2]> <data.frame[18 x 2]>
     ## $ referees    <list> [[], [], [], [], [], [], [], [], [], [], [], [], [], [],…
 
 ## Metrics - League
@@ -1783,15 +1783,15 @@ Norwich City FC are on a roll</span>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/346.svg' height='24'></img>
-Watford FC
+<img src='https://crests.football-data.org/402.svg' height='24'></img>
+Brentford FC
 
 </td>
 
 <td style="text-align:left;">
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant:
-Watford FC are on a roll</span>
+Brentford FC are on a roll</span>
 
 </td>
 
@@ -1819,24 +1819,6 @@ Swansea City AFC are on a roll</span>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/402.svg' height='24'></img>
-Brentford FC
-
-</td>
-
-<td style="text-align:left;">
-
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant:
-Brentford FC are on a roll</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 <img src='https://crests.football-data.org/355.svg' height='24'></img>
 Reading FC
 
@@ -1846,6 +1828,24 @@ Reading FC
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic:
 Reading FC are doing well</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/346.svg' height='24'></img>
+Watford FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic:
+Watford FC are doing well</span>
 
 </td>
 
@@ -1880,46 +1880,8 @@ Middlesbrough FC
 
 <td style="text-align:left;">
 
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Middlesbrough FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/387.svg' height='24'></img>
-Bristol City FC
-
-</td>
-
-<td style="text-align:left;">
-
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic:
-Bristol City FC are doing well</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<img src='http://upload.wikimedia.org/wikipedia/de/a/a3/Stoke_City.svg' height='24'></img>
-Stoke City FC
-
-</td>
-
-<td style="text-align:left;">
-
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Stoke City FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Middlesbrough FC are doing well</span>
 
 </td>
 
@@ -1947,6 +1909,44 @@ Blackburn Rovers FC are doing well</span>
 
 <td style="text-align:left;">
 
+<img src='http://upload.wikimedia.org/wikipedia/de/a/a3/Stoke_City.svg' height='24'></img>
+Stoke City FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Stoke City FC aren’t doing well, but hey - at least they aren’t Wycombe
+Wanderers FC</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/387.svg' height='24'></img>
+Bristol City FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Bristol City FC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
 <img src='https://crests.football-data.org/1081.svg' height='24'></img>
 Preston North End FC
 
@@ -1954,8 +1954,9 @@ Preston North End FC
 
 <td style="text-align:left;">
 
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic:
-Preston North End FC are doing well</span>
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Preston North End FC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
 
 </td>
 
@@ -1973,46 +1974,8 @@ Barnsley FC
 <td style="text-align:left;">
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Barnsley FC aren’t doing well, but hey - at least they aren’t Sheffield
-Wednesday FC</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/389.svg' height='24'></img>
-Luton Town FC
-
-</td>
-
-<td style="text-align:left;">
-
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Luton Town FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/394.svg' height='24'></img>
-Huddersfield Town AFC
-
-</td>
-
-<td style="text-align:left;">
-
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Huddersfield Town AFC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Barnsley FC aren’t doing well, but hey - at least they aren’t Wycombe
+Wanderers FC</span>
 
 </td>
 
@@ -2030,8 +1993,8 @@ Millwall FC
 <td style="text-align:left;">
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Millwall FC aren’t doing well, but hey - at least they aren’t Sheffield
-Wednesday FC</span>
+Millwall FC aren’t doing well, but hey - at least they aren’t Wycombe
+Wanderers FC</span>
 
 </td>
 
@@ -2050,7 +2013,26 @@ Cardiff City FC
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
 Cardiff City FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Wycombe Wanderers FC</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/389.svg' height='24'></img>
+Luton Town FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Luton Town FC aren’t doing well, but hey - at least they aren’t Wycombe
+Wanderers FC</span>
 
 </td>
 
@@ -2069,7 +2051,7 @@ Queens Park Rangers FC
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
 Queens Park Rangers FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Wycombe Wanderers FC</span>
 
 </td>
 
@@ -2079,35 +2061,16 @@ Sheffield Wednesday FC</span>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/1076.svg' height='24'></img>
-Coventry City FC
+<img src='https://crests.football-data.org/394.svg' height='24'></img>
+Huddersfield Town AFC
 
 </td>
 
 <td style="text-align:left;">
 
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums:
-Coventry City FC are doing poor. Now’s a good time to bad mouth the
-manager.</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/332.svg' height='24'></img>
-Birmingham City FC
-
-</td>
-
-<td style="text-align:left;">
-
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums:
-Birmingham City FC are doing poor. Now’s a good time to bad mouth the
-manager.</span>
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Huddersfield Town AFC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
 
 </td>
 
@@ -2126,7 +2089,7 @@ Nottingham Forest FC
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
 Nottingham Forest FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Wycombe Wanderers FC</span>
 
 </td>
 
@@ -2136,16 +2099,16 @@ Sheffield Wednesday FC</span>
 
 <td style="text-align:left;">
 
-<img src='https://crests.football-data.org/342.svg' height='24'></img>
-Derby County FC
+<img src='https://crests.football-data.org/1076.svg' height='24'></img>
+Coventry City FC
 
 </td>
 
 <td style="text-align:left;">
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
-Derby County FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Coventry City FC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
 
 </td>
 
@@ -2164,7 +2127,64 @@ Rotherham United FC
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
 Rotherham United FC aren’t doing well, but hey - at least they aren’t
-Sheffield Wednesday FC</span>
+Wycombe Wanderers FC</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/342.svg' height='24'></img>
+Derby County FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Derby County FC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/332.svg' height='24'></img>
+Birmingham City FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Birmingham City FC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+<img src='https://crests.football-data.org/345.svg' height='24'></img>
+Sheffield Wednesday FC
+
+</td>
+
+<td style="text-align:left;">
+
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent:
+Sheffield Wednesday FC aren’t doing well, but hey - at least they aren’t
+Wycombe Wanderers FC</span>
 
 </td>
 
@@ -2182,26 +2202,7 @@ Wycombe Wanderers FC
 <td style="text-align:left;">
 
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums:
-Wycombe Wanderers FC are doing poor. Now’s a good time to bad mouth the
-manager.</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<img src='https://crests.football-data.org/345.svg' height='24'></img>
-Sheffield Wednesday FC
-
-</td>
-
-<td style="text-align:left;">
-
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums:
-Sheffield Wednesday FC are doing poorly. Avoid supporters at all
+Wycombe Wanderers FC are doing poorly. Avoid supporters at all
 costs.</span>
 
 </td>
@@ -2284,32 +2285,24 @@ Modifier
 
 <td style="text-align:left;">
 
-– poor season
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-<span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(246, 110, 92, 1) !important;">Negative</span>
-
-</td>
-
-<td style="text-align:left;">
-
-  - conceded more than scored
+  - so so season
     </td>
     </tr>
     <tr>
     <td style="text-align:left;">
-    Neutral
+    <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(246, 110, 92, 1) !important;">Negative</span>
     </td>
     <td style="text-align:left;">
-    drew last game
-    </td>
-    </tr>
-    </tbody>
-    </table>
+      - conceded more than scored
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;">
+        <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #228B22 !important;">Positive</span>
+        </td>
+        <td style="text-align:left;">
+        \++ recent wins
+        </td>
+        </tr>
+        </tbody>
+        </table>
