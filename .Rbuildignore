@@ -9,3 +9,4 @@
 ^data-raw$
 ^shinyapp$
 ^Makefile$
+^vignettes/articles$

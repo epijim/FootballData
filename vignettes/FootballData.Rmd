@@ -1,0 +1,130 @@
+---
+title: "FootballData"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message = FALSE, warning = FALSE}
+library(FootballData)
+library(tidyverse)
+library(glue)
+#devtools::install_github("hadley/emo")
+library(emo)
+
+
+# table helper
+table_it <- function(x){
+  x %>%
+  kableExtra::kbl(escape = F) %>%
+  kableExtra::kable_classic("striped", full_width = TRUE)
+}
+```
+
+## Intro
+
+## Get competitions
+
+First I will pull all the leagues that are in the free tier, and show them
+on a table.
+
+```{r}
+# Get competitions
+competitions <- football_get_competition() %>%
+  filter(
+    # filter to what's in the free plan
+    plan == "TIER_ONE" 
+    &
+    # The data structures returned for country level competitions is 
+    # different, so let's remove it
+    !country %in% c("World","Europe"))
+
+competitions %>% select(flag,country,league) %>% table_it()
+```
+
+## Dive into a league
+
+```{r}
+# Get league info
+league <- competitions %>%
+  filter(country == "Germany" & league == "Bundesliga") %>%
+  pull(competition_id) %>%
+  football_get_standing() 
+
+league %>% 
+  mutate(team = paste(crest,team)) %>% 
+  select(team,playedGames,form,points) %>%
+  table_it()
+```
+
+## Get upcoming games for a team
+
+```{r}
+team_of_interest <- "SC Freiburg"
+
+league %>%
+  filter(team == team_of_interest) %>%
+  pull(team_id) %>%
+  football_get_upcoming() %>%
+  arrange(utcDate) %>% 
+  slice(1) %>%
+  mutate(
+    text = glue(
+      "Today is {Sys.Date()}\n",
+      "{team_of_interest}'s next game is on {as.Date(utcDate)}\n",
+      "Home: {homeTeam$name}; Away {awayTeam$name}"
+    )
+  ) %>%
+  pull(text) 
+```
+
+## Calculate the moods
+
+%>%
+            mutate(
+                
+            ) %>%
+
+```{r, results='asis'}
+emoji_bad <- emo::ji("poop")
+emoji_good <- emo::ji("beer")
+
+add_bad <- function(x){
+  gsub("-",emoji_bad,x = x)
+}
+
+add_good <- function(x){
+  gsub("\\+",emoji_good,x = x)
+}
+
+league %>%
+  football_calculate_competition_metrics() %>%
+  mutate(
+    team = paste(crest,team),
+    metric_mood = as.character(metric_mood),
+    metric_mood = case_when(
+        str_detect(metric_mood,"Jubilant") ~ kableExtra::cell_spec(
+            metric_mood, color = "black", background = "#98FB98"
+        ),
+        str_detect(metric_mood,"Optimistic") ~ kableExtra::cell_spec(
+            metric_mood, color = "black", background = "#e5f5f9"
+        ),
+        str_detect(metric_mood,"Ambivalent") ~ kableExtra::cell_spec(
+            metric_mood, color = "black", background = "#f7fcb9"
+        ),
+        str_detect(metric_mood,"Doldrums") ~ kableExtra::cell_spec(
+            metric_mood, color = "black", background = "#ffc4c4"
+        ),
+        TRUE ~ metric_mood
+    )
+  ) %>%
+  rename(mood = metric_mood,numeric_mood = metric_mood_numeric) %>%
+  mutate_at(vars(matches("metric_")),add_bad) %>%
+  mutate_all(add_good) %>%
+  select(team,points,starts_with("metric_"),numeric_mood,mood) %>%
+  table_it()
+```
