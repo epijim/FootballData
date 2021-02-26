@@ -1,5 +1,5 @@
 Package: FootballData
-Title: What the Package Does (One Line, Title Case)
+Title: Easy access to Football API data and quick toy summaries 
 Version: 0.1
 Authors@R: 
     person(given = "James",
