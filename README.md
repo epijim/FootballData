@@ -1,6 +1,9 @@
 FootballData
 ================
 
+[![HitCount](http://hits.dwyl.com/epijim/FootballData.svg)](http://hits.dwyl.com/epijim/FootballData)
+
+
 To rebuild run `make build`.
 
 ``` r
