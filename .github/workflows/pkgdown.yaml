@@ -38,6 +38,7 @@ jobs:
           install.packages("pkgdown", type = "binary")
           install.packages("tidyverse", type = "binary")
           install.packages("devtools", type = "binary")
+          install.packages("kableExtra", type = "binary")
           devtools::install_github("hadley/emo")
         shell: Rscript {0}
 
