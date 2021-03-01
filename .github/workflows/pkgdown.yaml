@@ -7,7 +7,7 @@ on:
 name: pkgdown
 
 env:
-  GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+  API_FOOTBALL_DATA: ${{ secrets.API_FOOTBALL_DATA }}
 
 jobs:
   pkgdown:
