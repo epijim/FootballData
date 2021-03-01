@@ -84,11 +84,6 @@ league %>%
 
 ## Calculate the moods
 
-%>%
-            mutate(
-                
-            ) %>%
-
 ```{r, results='asis'}
 emoji_bad <- emo::ji("poop")
 emoji_good <- emo::ji("beer")
