@@ -11,7 +11,6 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      API_FOOTBALL_DATA: ${{ secrets.API_FOOTBALL_DATA }}
     steps:
       - uses: actions/checkout@v2
 
@@ -47,6 +46,7 @@ jobs:
         run: R CMD INSTALL .
 
       - name: Deploy package
+        env: API_FOOTBALL_DATA: ${{ secrets.API_FOOTBALL_DATA }}
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
