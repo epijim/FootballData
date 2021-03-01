@@ -16,6 +16,8 @@ library(glue)
 #devtools::install_github("hadley/emo")
 library(emo)
 
+if(Sys.getenv("API_FOOTBALL_DATA") == "") stop("API_FOOTBALL_DATA missing")
+
 
 # table helper
 table_it <- function(x){
