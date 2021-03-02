@@ -84,6 +84,8 @@
 <span class="co">#devtools::install_github("hadley/emo")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/emo">emo</a></span><span class="op">)</span>
 
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"API_FOOTBALL_DATA"</span><span class="op">)</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"API_FOOTBALL_DATA missing"</span><span class="op">)</span>
+
 
 <span class="co"># table helper</span>
 <span class="va">table_it</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
@@ -261,13 +263,13 @@ points
 <img src="https://crests.football-data.org/5.svg" height="24"> FC Bayern München
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-W,W,W,W,W
+W,L,D,W,W
 </td>
 <td style="text-align:right;">
-48
+52
 </td>
 </tr>
 <tr>
@@ -275,13 +277,13 @@ W,W,W,W,W
 <img src="https://crests.football-data.org/721.svg" height="24"> RB Leipzig
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-W,W,L,W,D
+W,W,W,W,W
 </td>
 <td style="text-align:right;">
-41
+50
 </td>
 </tr>
 <tr>
@@ -289,13 +291,13 @@ W,W,L,W,D
 <img src="https://crests.football-data.org/11.svg" height="24"> VfL Wolfsburg
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-W,W,W,W,D
+W,W,D,W,W
 </td>
 <td style="text-align:right;">
-38
+45
 </td>
 </tr>
 <tr>
@@ -303,27 +305,13 @@ W,W,W,W,D
 <img src="https://crests.football-data.org/19.svg" height="24"> Eintracht Frankfurt
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-W,W,W,D,W
+L,W,W,W,W
 </td>
 <td style="text-align:right;">
-36
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<img src="https://crests.football-data.org/3.svg" height="24"> Bayer 04 Leverkusen
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:left;">
-W,L,L,W,L
-</td>
-<td style="text-align:right;">
-35
+42
 </td>
 </tr>
 <tr>
@@ -331,41 +319,27 @@ W,L,L,W,L
 <img src="https://crests.football-data.org/4.svg" height="24"> Borussia Dortmund
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,W,L,L,D
+W,W,D,L,W
 </td>
 <td style="text-align:right;">
-32
+39
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/18.svg" height="24"> Borussia Mönchengladbach
+<img src="https://crests.football-data.org/3.svg" height="24"> Bayer 04 Leverkusen
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,D,W,W,D
+L,D,D,W,L
 </td>
 <td style="text-align:right;">
-32
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<img src="https://crests.football-data.org/17.svg" height="24"> SC Freiburg
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:left;">
-W,L,W,D,L
-</td>
-<td style="text-align:right;">
-30
+37
 </td>
 </tr>
 <tr>
@@ -373,13 +347,41 @@ W,L,W,D,L
 <img src="https://crests.football-data.org/28.svg" height="24"> 1. FC Union Berlin
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,D,L,L,W
+D,W,D,L,D
 </td>
 <td style="text-align:right;">
-29
+34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/17.svg" height="24"> SC Freiburg
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+W,L,D,W,L
+</td>
+<td style="text-align:right;">
+34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/18.svg" height="24"> Borussia Mönchengladbach
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+L,L,D,L,D
+</td>
+<td style="text-align:right;">
+33
 </td>
 </tr>
 <tr>
@@ -387,27 +389,13 @@ L,D,L,L,W
 <img src="https://crests.football-data.org/10.svg" height="24"> VfB Stuttgart
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,W,L,L,D
+W,W,D,L,W
 </td>
 <td style="text-align:right;">
-25
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<img src="https://crests.football-data.org/12.svg" height="24"> SV Werder Bremen
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:left;">
-D,W,L,W,D
-</td>
-<td style="text-align:right;">
-22
+32
 </td>
 </tr>
 <tr>
@@ -415,13 +403,27 @@ D,W,L,W,D
 <img src="https://crests.football-data.org/2.svg" height="24"> TSG 1899 Hoffenheim
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,L,W,W,D
+D,W,D,L,L
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/12.svg" height="24"> SV Werder Bremen
 </td>
 <td style="text-align:right;">
 22
+</td>
+<td style="text-align:left;">
+W,L,D,D,W
+</td>
+<td style="text-align:right;">
+26
 </td>
 </tr>
 <tr>
@@ -429,13 +431,13 @@ L,L,W,W,D
 <img src="https://crests.football-data.org/16.svg" height="24"> FC Augsburg
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,L,W,L,L
+W,D,L,L,L
 </td>
 <td style="text-align:right;">
-22
+26
 </td>
 </tr>
 <tr>
@@ -443,10 +445,10 @@ L,L,W,L,L
 <img src="https://crests.football-data.org/1.svg" height="24"> 1. FC Köln
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-W,W,L,W,D
+L,L,L,W,W
 </td>
 <td style="text-align:right;">
 21
@@ -457,27 +459,27 @@ W,W,L,W,D
 <img src="https://crests.football-data.org/9.svg" height="24"> Hertha BSC
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,L,L,L,D
+L,L,D,L,L
 </td>
 <td style="text-align:right;">
-17
+18
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/38.svg" height="24"> DSC Arminia Bielefeld
+<img src="https://crests.football-data.org/38.svg" height="24"> Arminia Bielefeld
 </td>
 <td style="text-align:right;">
-19
+22
 </td>
 <td style="text-align:left;">
-L,L,W,D,W
+L,L,D,L,L
 </td>
 <td style="text-align:right;">
-17
+18
 </td>
 </tr>
 <tr>
@@ -485,13 +487,13 @@ L,L,W,D,W
 <img src="https://crests.football-data.org/15.svg" height="24"> 1. FSV Mainz 05
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-W,L,W,L,D
+L,W,D,W,L
 </td>
 <td style="text-align:right;">
-13
+17
 </td>
 </tr>
 <tr>
@@ -499,13 +501,13 @@ W,L,W,L,D
 <img src="https://crests.football-data.org/6.svg" height="24"> FC Schalke 04
 </td>
 <td style="text-align:right;">
-20
+23
 </td>
 <td style="text-align:left;">
-L,D,L,L,L
+L,L,D,L,D
 </td>
 <td style="text-align:right;">
-8
+9
 </td>
 </tr>
 </tbody>
@@ -531,16 +533,14 @@ L,D,L,L,L
     <span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pull</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> 
-<span class="co">#&gt; Today is 2021-02-09</span>
-<span class="co">#&gt; SC Freiburg's next game is on 2021-02-13</span>
-<span class="co">#&gt; Home: SV Werder Bremen; Away SC Freiburg</span></code></pre></div>
+<span class="co">#&gt; Today is 2021-03-02</span>
+<span class="co">#&gt; SC Freiburg's next game is on 2021-03-06</span>
+<span class="co">#&gt; Home: SC Freiburg; Away RB Leipzig</span></code></pre></div>
 </div>
 <div id="calculate-the-moods" class="section level2">
 <h2 class="hasAnchor">
 <a href="#calculate-the-moods" class="anchor"></a>Calculate the moods</h2>
-<p>%&gt;% mutate(</p>
-<pre><code>     ) %&gt;%</code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">emoji_bad</span> <span class="op">&lt;-</span> <span class="fu">emo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emo/man/ji.html">ji</a></span><span class="op">(</span><span class="st">"poop"</span><span class="op">)</span>
 <span class="va">emoji_good</span> <span class="op">&lt;-</span> <span class="fu">emo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emo/man/ji.html">ji</a></span><span class="op">(</span><span class="st">"beer"</span><span class="op">)</span>
 
@@ -608,19 +608,19 @@ mood
 <img src="https://crests.football-data.org/5.svg" height="24"> FC Bayern München
 </td>
 <td style="text-align:left;">
-48
+52
 </td>
 <td style="text-align:left;">
 🍺🍺🍺🍺 top of the league
 </td>
 <td style="text-align:left;">
-🍺🍺🍺🍺 5 win streak
+🍺🍺 recent wins
 </td>
 <td style="text-align:left;">
 🍺🍺🍺 strikers are on form
 </td>
 <td style="text-align:left;">
-11
+9
 </td>
 <td style="text-align:left;">
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant: FC Bayern München are on a roll</span>
@@ -631,19 +631,19 @@ mood
 <img src="https://crests.football-data.org/721.svg" height="24"> RB Leipzig
 </td>
 <td style="text-align:left;">
-41
+50
 </td>
 <td style="text-align:left;">
 🍺🍺 strong league position
 </td>
 <td style="text-align:left;">
-🍺🍺 recent wins
+🍺🍺🍺🍺 5 win streak
 </td>
 <td style="text-align:left;">
 🍺🍺🍺 strikers are on form
 </td>
 <td style="text-align:left;">
-7
+9
 </td>
 <td style="text-align:left;">
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #98FB98 !important;">Jubilant: RB Leipzig are on a roll</span>
@@ -654,7 +654,7 @@ mood
 <img src="https://crests.football-data.org/11.svg" height="24"> VfL Wolfsburg
 </td>
 <td style="text-align:left;">
-38
+45
 </td>
 <td style="text-align:left;">
 🍺🍺 strong league position
@@ -677,7 +677,7 @@ mood
 <img src="https://crests.football-data.org/19.svg" height="24"> Eintracht Frankfurt
 </td>
 <td style="text-align:left;">
-36
+42
 </td>
 <td style="text-align:left;">
 🍺 safe in middle of league
@@ -697,56 +697,56 @@ mood
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/3.svg" height="24"> Bayer 04 Leverkusen
-</td>
-<td style="text-align:left;">
-35
-</td>
-<td style="text-align:left;">
-🍺 safe in middle of league
-</td>
-<td style="text-align:left;">
-💩💩 more recent losses than wins
-</td>
-<td style="text-align:left;">
-🍺 scored more than conceded
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Bayer 04 Leverkusen aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 <img src="https://crests.football-data.org/4.svg" height="24"> Borussia Dortmund
 </td>
 <td style="text-align:left;">
-32
+39
 </td>
 <td style="text-align:left;">
 🍺 safe in middle of league
 </td>
 <td style="text-align:left;">
-💩💩 more recent losses than wins
+🍺🍺 recent wins
 </td>
 <td style="text-align:left;">
 🍺 scored more than conceded
 </td>
 <td style="text-align:left;">
-0
+4
 </td>
 <td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Borussia Dortmund aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Borussia Dortmund are doing well</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/18.svg" height="24"> Borussia Mönchengladbach
+<img src="https://crests.football-data.org/3.svg" height="24"> Bayer 04 Leverkusen
 </td>
 <td style="text-align:left;">
-32
+37
+</td>
+<td style="text-align:left;">
+🍺 safe in middle of league
+</td>
+<td style="text-align:left;">
+💩 lost last game
+</td>
+<td style="text-align:left;">
+🍺 scored more than conceded
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Bayer 04 Leverkusen are doing well</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/28.svg" height="24"> 1. FC Union Berlin
+</td>
+<td style="text-align:left;">
+34
 </td>
 <td style="text-align:left;">
 🍺 safe in middle of league
@@ -761,7 +761,7 @@ drew last game
 2
 </td>
 <td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: Borussia Mönchengladbach are doing well</span>
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: 1. FC Union Berlin are doing well</span>
 </td>
 </tr>
 <tr>
@@ -769,7 +769,7 @@ drew last game
 <img src="https://crests.football-data.org/17.svg" height="24"> SC Freiburg
 </td>
 <td style="text-align:left;">
-30
+34
 </td>
 <td style="text-align:left;">
 🍺 safe in middle of league
@@ -789,10 +789,79 @@ drew last game
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/28.svg" height="24"> 1. FC Union Berlin
+<img src="https://crests.football-data.org/18.svg" height="24"> Borussia Mönchengladbach
 </td>
 <td style="text-align:left;">
-29
+33
+</td>
+<td style="text-align:left;">
+💩 so so season
+</td>
+<td style="text-align:left;">
+💩💩 no recent wins
+</td>
+<td style="text-align:left;">
+🍺 scored more than conceded
+</td>
+<td style="text-align:left;">
+-2
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: Borussia Mönchengladbach aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/10.svg" height="24"> VfB Stuttgart
+</td>
+<td style="text-align:left;">
+32
+</td>
+<td style="text-align:left;">
+💩 so so season
+</td>
+<td style="text-align:left;">
+🍺🍺 recent wins
+</td>
+<td style="text-align:left;">
+🍺 scored more than conceded
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: VfB Stuttgart are doing well</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/2.svg" height="24"> TSG 1899 Hoffenheim
+</td>
+<td style="text-align:left;">
+27
+</td>
+<td style="text-align:left;">
+💩 so so season
+</td>
+<td style="text-align:left;">
+💩 lost last game
+</td>
+<td style="text-align:left;">
+💩 conceded more than scored
+</td>
+<td style="text-align:left;">
+-3
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: TSG 1899 Hoffenheim aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<img src="https://crests.football-data.org/12.svg" height="24"> SV Werder Bremen
+</td>
+<td style="text-align:left;">
+26
 </td>
 <td style="text-align:left;">
 💩 so so season
@@ -801,56 +870,10 @@ drew last game
 🍺 won last game
 </td>
 <td style="text-align:left;">
-🍺 scored more than conceded
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #e5f5f9 !important;">Optimistic: 1. FC Union Berlin are doing well</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<img src="https://crests.football-data.org/10.svg" height="24"> VfB Stuttgart
-</td>
-<td style="text-align:left;">
-25
-</td>
-<td style="text-align:left;">
-💩 so so season
-</td>
-<td style="text-align:left;">
-💩💩 more recent losses than wins
-</td>
-<td style="text-align:left;">
-🍺 scored more than conceded
-</td>
-<td style="text-align:left;">
--2
-</td>
-<td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: VfB Stuttgart aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<img src="https://crests.football-data.org/12.svg" height="24"> SV Werder Bremen
-</td>
-<td style="text-align:left;">
-22
-</td>
-<td style="text-align:left;">
-💩 so so season
-</td>
-<td style="text-align:left;">
-drew last game
-</td>
-<td style="text-align:left;">
 💩 conceded more than scored
 </td>
 <td style="text-align:left;">
--2
+-1
 </td>
 <td style="text-align:left;">
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: SV Werder Bremen aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
@@ -858,33 +881,10 @@ drew last game
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/2.svg" height="24"> TSG 1899 Hoffenheim
-</td>
-<td style="text-align:left;">
-22
-</td>
-<td style="text-align:left;">
-💩 so so season
-</td>
-<td style="text-align:left;">
-drew last game
-</td>
-<td style="text-align:left;">
-💩 conceded more than scored
-</td>
-<td style="text-align:left;">
--2
-</td>
-<td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: TSG 1899 Hoffenheim aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 <img src="https://crests.football-data.org/16.svg" height="24"> FC Augsburg
 </td>
 <td style="text-align:left;">
-22
+26
 </td>
 <td style="text-align:left;">
 💩 so so season
@@ -913,13 +913,13 @@ drew last game
 💩 so so season
 </td>
 <td style="text-align:left;">
-🍺🍺 recent wins
+🍺 won last game
 </td>
 <td style="text-align:left;">
 💩 conceded more than scored
 </td>
 <td style="text-align:left;">
-0
+-1
 </td>
 <td style="text-align:left;">
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: 1. FC Köln aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
@@ -930,7 +930,7 @@ drew last game
 <img src="https://crests.football-data.org/9.svg" height="24"> Hertha BSC
 </td>
 <td style="text-align:left;">
-17
+18
 </td>
 <td style="text-align:left;">
 💩💩 poor season
@@ -950,25 +950,25 @@ drew last game
 </tr>
 <tr>
 <td style="text-align:left;">
-<img src="https://crests.football-data.org/38.svg" height="24"> DSC Arminia Bielefeld
+<img src="https://crests.football-data.org/38.svg" height="24"> Arminia Bielefeld
 </td>
 <td style="text-align:left;">
-17
+18
 </td>
 <td style="text-align:left;">
 💩💩 poor season
 </td>
 <td style="text-align:left;">
-🍺 won last game
+💩💩 no recent wins
 </td>
 <td style="text-align:left;">
 💩💩💩 defense is a seive
 </td>
 <td style="text-align:left;">
--4
+-7
 </td>
 <td style="text-align:left;">
-<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #f7fcb9 !important;">Ambivalent: DSC Arminia Bielefeld aren’t doing well, but hey - at least they aren’t FC Schalke 04</span>
+<span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums: Arminia Bielefeld are doing poor. Now’s a good time to bad mouth the manager.</span>
 </td>
 </tr>
 <tr>
@@ -976,19 +976,19 @@ drew last game
 <img src="https://crests.football-data.org/15.svg" height="24"> 1. FSV Mainz 05
 </td>
 <td style="text-align:left;">
-13
+17
 </td>
 <td style="text-align:left;">
 💩💩💩💩 relagation?
 </td>
 <td style="text-align:left;">
-drew last game
+💩 lost last game
 </td>
 <td style="text-align:left;">
 💩💩💩 defense is a seive
 </td>
 <td style="text-align:left;">
--7
+-8
 </td>
 <td style="text-align:left;">
 <span style="     color: black !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #ffc4c4 !important;">Doldrums: 1. FSV Mainz 05 are doing poor. Now’s a good time to bad mouth the manager.</span>
@@ -999,7 +999,7 @@ drew last game
 <img src="https://crests.football-data.org/6.svg" height="24"> FC Schalke 04
 </td>
 <td style="text-align:left;">
-8
+9
 </td>
 <td style="text-align:left;">
 💩💩💩💩 relagation?
